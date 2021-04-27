@@ -41,7 +41,7 @@ public class GameService {
         pickedPlayers.add(availablePlayers.pop());
         pickedPlayers.add(availablePlayers.pop());
 
-        Game newGame = new Game(AppUtils.generateRandomID());
+        Game newGame = new Game(AppUtils.createNewId());
         newGame.setPlayers(pickedPlayers);
         newGame.setState(State.WAIT);
         pickedPlayers.get(0).setGame(newGame);
@@ -55,7 +55,7 @@ public class GameService {
         pickedPlayers.add(playerOne);
         pickedPlayers.add(playerTwo);
 
-        Game newGame = new Game(AppUtils.generateRandomID());
+        Game newGame = new Game(AppUtils.createNewId());
         games.add(newGame);
         newGame.setPlayers(pickedPlayers);
         newGame.setState(State.READY);
@@ -74,21 +74,21 @@ public class GameService {
         return players.get(playerId);
     }
 
-    public Player findPlayerByName(String nickName) {
+  /*  public Player findPlayerByName(String nickName) {
 
-        if(players.get(nickName) == null){
-            return this.players.get(nickName);
+        if(players.get(name) == null){
+            return this.players.get(name);
         }
-        return players.get(nickName); }
+        return players.get(name); }*/
 
 
-    public Player createPlayer(String nickname) {
+    public Player registerPlayer(String nickname) {
         Player newPlayer = new Player(nickname);
         players.put(newPlayer.getPlayerId(), newPlayer);
         return newPlayer;
     }
 
-    public Player ready(long playerid) {
+    public Player readyForPlaying(long playerid) {
         Player player = findPlayerById(playerid);
         player.ready();
         if (!player.hasGame()) {

@@ -13,8 +13,7 @@ import rps.app.game.Game;
 public class Player implements Response {
 
 
-
-    private String nickName;
+    private String name;
 
     private long   playerId;
     private State  state;
@@ -33,14 +32,14 @@ public class Player implements Response {
 
 
 
-    public Player(String nickName) {
+    public Player(String name) {
         this.state = State.WAIT;
-        this.nickName = nickName;
-        this.playerId = (new Random(System.currentTimeMillis())).nextLong() * nickName.length();
+        this.name = name;
+        this.playerId = (new Random(System.currentTimeMillis())).nextLong() * name.length();
     }
 
     public String getNickName() {
-        return nickName;
+        return name;
     }
 
     public long getPlayerId() {
@@ -98,7 +97,7 @@ public class Player implements Response {
 
     @Override
     public String toString() {
-        return "Player{" + "nickName='" + nickName + '\'' + ", playerId=" + playerId + ", state=" + state + ", Selection="
+        return "Player{" + "nickName='" + name + '\'' + ", playerId=" + playerId + ", state=" + state + ", Selection="
                 + selection + ", game=" + game + '}';
     }
 

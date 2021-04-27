@@ -3,10 +3,16 @@ package rps.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import rps.app.AppUtils;
+
 import rps.app.DefaultResponse;
+import rps.app.gamelogic.GameRunning;
+import rps.app.player.PlayersStack;
 import rps.app.services.GameService;
 import rps.app.gamelogic.Selection;
 import rps.app.player.Player;
+
+import java.util.UUID;
 
 @RestController
 public class AppController {
@@ -26,23 +32,23 @@ public class AppController {
 
     @GetMapping(value = "/test")
     public DefaultResponse test() {
-        return new DefaultResponse("Hi", "Testing");
+        return new DefaultResponse("Hi", "testing");
     }
 
-    @PostMapping(value = "/register/{nickname}")
-    public PlayerResponse registerPlayer(@PathVariable("nickname") String nickname) {
-        return new PlayerResponse(gameService.createPlayer(nickname));
+    @PostMapping(value = "/register/{name}")
+    public PlayerResponse registerPlayer(@PathVariable("name") String name) {
+        return new PlayerResponse(gameService.registerPlayer(name));
     }
 
     @GetMapping(value = "/check/{playerid}")
-    public PlayerResponse checkGame(@PathVariable("playerid") Long playerId) {
+    public PlayerResponse checkPlayer(@PathVariable("playerid") Long playerId) {
         Player player = gameService.findPlayerById(playerId);
         return new PlayerResponse(player);
     }
 
     @GetMapping(value = "/ready/{playerid}")
-    public PlayerResponse ready(@PathVariable("playerid") long playerid) {
-        Player player = gameService.ready(playerid);
+    public PlayerResponse readyForPlaying(@PathVariable("playerid") long playerid) {
+        Player player = gameService.readyForPlaying(playerid);
         return new PlayerResponse(player);
     }
 
@@ -52,6 +58,42 @@ public class AppController {
         player.move(selection);
         return new PlayerResponse(player);
     }
+
+    // Get token
+    @GetMapping(value = "auth/{token}")
+    public String getToken(@PathVariable("token") String name){
+        return AppUtils.createNewId();
+
+    }
+
+   //  start new game
+    /*@GetMapping(value = "/games/start")
+    public GameRunning startGame(){
+        gameService.spawnNewGame();
+        return new
+
+    }*/
+
+
+    // game status
+    /*
+    * @GetMapping(value = "/games/status")
+    *
+    *
+    * */
+
+    // Game List
+    /*
+    *  @GetMapping(value = "/games")
+    * */
+
+    // Game info
+    /*
+    * @GetMapping(value = "/games/{id}")
+    * */
+
+
+
 
 
     /*

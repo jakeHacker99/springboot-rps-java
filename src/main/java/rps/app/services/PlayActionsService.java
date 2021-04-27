@@ -1,0 +1,159 @@
+package rps.app.services;
+
+import org.springframework.stereotype.Service;
+import rps.app.DefaultResponse;
+import rps.app.Response;
+import rps.app.game.Game;
+import rps.app.game.GameHistory;
+import rps.app.gamelogic.GameRunning;
+import rps.app.gamelogic.Selection;
+import rps.app.player.Player;
+
+@Service
+public class PlayActionsService {
+
+    private static final String PLAY_ROCK = "ROCK";
+    private static final String PLAY_PAPER = "PAPER";
+    private static final String PLAY_SCISSORS = "SCISSORS";
+
+    public Response readyPlayer(String gamesessionid, long playerId) {
+        if (playerAndGameValid(gamesessionid, playerId)) {
+            Game game = getGame(gamesessionid);
+            if (game.hasAReadyPlayer()) {
+                return readyGameAndPlayer(game, playerId);
+            } else {
+                return readyPlayer(game, playerId);
+            }
+        }
+        return new DefaultResponse("Game or Player Not Found", "INVALID");
+    }
+
+    public Response makeAMove(String gamesessionid, long playerId, String move) {
+        return makeAMove(getGame(gamesessionid), playerId, move);
+    }
+
+    public Response makeAMove(Game game, long playerId, String move) {
+        if (isPlayable(game)) {
+            if (Game.State.READY.equals(game.getState())) {
+                changeGameStatus(game, Game.State.INPROGRESS);
+            }
+            GameRunning playAction = new GameRunning(game.getGameId(), playerId, getMove(move));
+            changePlayerState(getPlayer(game,playerId), Player.State.PLAYING);
+
+            if (game.hasOtherPlayerPlayed()) {
+                game.updatePlayAction(playAction);
+                Response winner = evaluateGame(game);
+                if (winner == null) {
+                    new DefaultResponse("Improper Response", "INVALID");
+                }
+                changeGameStatus(game, Game.State.OVER);
+                if ("TIE".equals(winner.getState()))
+                {
+                    return new DefaultResponse("Its a TIE", "TIE");
+                }
+                winner = getPlayer(game, Long.parseLong(winner.getState()));
+                changePlayerStatuses(game, (Player) winner);
+                return winner;
+            } else {
+                game.updatePlayAction(playAction);
+                return game;
+            }
+        }
+        return new DefaultResponse("The Other Player is Not Yet Ready", "INVALID");
+    }
+
+    private void changePlayerStatuses(Game game, Player winningPlayer) {
+        changePlayerState(winningPlayer, Player.State.WIN);
+        changePlayerState(getOtherPlayer(game,winningPlayer.getPlayerId()), Player.State.LOSE);
+    }
+
+    private boolean isPlayable(Game game) {
+        return game.getState().equals(Game.State.READY) || game.getState().equals(Game.State.INPROGRESS);
+    }
+
+    private Selection getMove(String move) {
+        if (PLAY_ROCK.equals(move)) {
+            return Selection.ROCK;
+        } else if (PLAY_PAPER.equals(move)) {
+            return Selection.PAPER;
+        } else if (PLAY_SCISSORS.equals(move)){
+            return Selection.SCISSORS;
+        }
+        return null;
+    }
+
+    private void changeGameStatus(Game game, Game.State state) {
+        game.setState(state);
+    }
+
+    private void changePlayerState(Player player, Player.State state) {
+        player.setState(state);
+    }
+
+    private Result evaluateGame(Game game) {
+        long winnerId = game.evaluate();
+        if (winnerId == 0L) {
+            return new Result("TIE");
+        }
+        return new Result(String.valueOf(winnerId));
+    }
+
+    public class Result implements Response {
+        private String state;
+
+        public Result(String state) {
+            this.state = state;
+        }
+
+        @Override
+        public String getState() { return state;}
+    }
+
+    private Response readyPlayer(Game game, long player) {
+        Player playerX = getPlayer(game, player);
+        playerX.setState(Player.State.READY);
+        return playerX;
+    }
+
+    private Response readyGameAndPlayer(Game game, long player) {
+        Player playerX = getPlayer(game, player);
+        playerX.setState(Player.State.READY);
+        game.setState(Game.State.READY);
+        return game;
+    }
+
+    private Game getGame(String gamesessionid) {
+        return GameHistory.getInstance().fetch(gamesessionid);
+    }
+
+    private Player getPlayer(Game game, long playerId) {
+        for (Player player : game.getPlayers()) {
+            if (player.getPlayerId() == playerId) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    private Player getOtherPlayer(Game game, long playerId) {
+        for (Player player : game.getPlayers()) {
+            if (player.getPlayerId() != playerId) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    private boolean playerAndGameValid(String gamesessionid, long playerId) {
+        if (GameHistory.gameExists(gamesessionid)) {
+            Game currentGame = GameHistory.getInstance().fetch(gamesessionid);
+            for (Player player : currentGame.getPlayers()) {
+                if (player.getPlayerId() == playerId) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+}

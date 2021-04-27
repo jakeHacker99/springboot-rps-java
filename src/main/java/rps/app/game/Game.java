@@ -57,10 +57,10 @@ public class Game implements Response {
         return false;
     }
 
-    public Object evaluate() {
+    public Long evaluate() {
         Selection result = evaluateMoves();
         if (result == null || Selection.Draw.equals(result)) {
-            return 0;
+            return null;
         }
         for (GameRunning action : actions) {
             if (result.equals(action.getSelection())) {
@@ -68,7 +68,7 @@ public class Game implements Response {
             }
 
         }
-        return 0;
+        return null;
     }
 
 

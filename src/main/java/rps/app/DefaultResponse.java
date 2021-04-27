@@ -2,7 +2,8 @@ package rps.app;
 
 import rps.app.player.PlayersStack;
 
-public class DefaultResponse implements Response{
+public class DefaultResponse implements Response {
+
     private String reply;
     private String state;
     private int    playersReady;

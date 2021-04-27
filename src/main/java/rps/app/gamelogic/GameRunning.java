@@ -2,10 +2,10 @@ package rps.app.gamelogic;
 
 public class GameRunning {
     private String game;
-    private String player;
+    private Long player;
     private Selection selection;
 
-    public GameRunning(String game, String player, Selection selection) {
+    public GameRunning(String game, Long player, Selection selection) {
         this.game = game;
         this.player = player;
         this.selection = selection;
@@ -19,11 +19,11 @@ public class GameRunning {
         this.game = game;
     }
 
-    public String getPlayer() {
+    public Long getPlayer() {
         return player;
     }
 
-    public void setPlayer(String player) {
+    public void setPlayer(Long player) {
         this.player = player;
     }
 
