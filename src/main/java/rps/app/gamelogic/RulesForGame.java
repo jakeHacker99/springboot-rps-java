@@ -1,4 +1,4 @@
-package com.example.demo;
+package rps.app.gamelogic;
 
 public class RulesForGame {
 
