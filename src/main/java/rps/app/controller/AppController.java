@@ -59,6 +59,7 @@ public class AppController {
         return new PlayerResponse(player);
     }
 
+    // Get token
     // Get rps.app.token
     @GetMapping(value = "auth/{token}")
     public String getToken(@PathVariable("token") String name){
