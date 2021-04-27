@@ -25,7 +25,7 @@ public class AppController {
     }
 
     @GetMapping(value = "/test")
-    public DefaultResponse ping() {
+    public DefaultResponse test() {
         return new DefaultResponse("Hi", "Testing");
     }
 
@@ -46,8 +46,8 @@ public class AppController {
         return new PlayerResponse(player);
     }
 
-    @GetMapping(value = "/move/{playerid}/{move}")
-    public PlayerResponse play(@PathVariable("playerid") long playerId, @PathVariable("move") Selection selection) {
+    @GetMapping(value = "/selection/{playerid}/{selection}")
+    public PlayerResponse playing(@PathVariable("playerid") long playerId, @PathVariable("selection") Selection selection) {
         Player player = gameService.findPlayerById(playerId);
         player.move(selection);
         return new PlayerResponse(player);
