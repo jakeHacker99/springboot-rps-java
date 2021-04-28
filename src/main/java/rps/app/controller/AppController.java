@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import rps.app.AppUtils;
 
 import rps.app.DefaultResponse;
+import rps.app.game.Game;
 import rps.app.gamelogic.GameRunning;
 import rps.app.player.PlayersStack;
 import rps.app.services.GameService;
@@ -67,40 +68,32 @@ public class AppController {
 
     }
 
-   //  start new game
-    /*@GetMapping(value = "/games/start")
-    public GameRunning startGame(){
-        gameService.spawnNewGame();
-        return new
+    //  start new game
+    @GetMapping(value = "/games/start")
+    public Game startNewGame(){
+     return  gameService.startNewGame(new Player("ja"),new Player("sds"));
 
-    }*/
+    }
 
 
     // game status
     /*
-    * @GetMapping(value = "/games/status")
-    *
-    *
-    * */
+     * @GetMapping(value = "/games/status")
+     *
+     *
+     * */
 
     // Game List
     /*
-    *  @GetMapping(value = "/games")
-    * */
+     *  @GetMapping(value = "/games")
+     * */
 
     // Game info
     /*
-    * @GetMapping(value = "/games/{id}")
-    * */
-
-
-
-
-
-    /*
-     * we add other request mapping here later
-     *
+     * @GetMapping(value = "/games/{id}")
      * */
+
+
 
 
 }

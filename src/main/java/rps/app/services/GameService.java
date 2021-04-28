@@ -50,7 +50,7 @@ public class GameService {
         return newGame;
     }
 
-    private Game startNewGame(Player playerOne, Player playerTwo) {
+    public Game startNewGame(Player playerOne, Player playerTwo) {
         List<Player> pickedPlayers = new ArrayList<>();
         pickedPlayers.add(playerOne);
         pickedPlayers.add(playerTwo);
