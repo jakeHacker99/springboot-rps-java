@@ -1,8 +1,8 @@
 package rps.app.services;
 
 import org.springframework.stereotype.Service;
-import rps.app.DefaultResponse;
-import rps.app.Response;
+import rps.app.utilities.DefaultBody;
+import rps.app.utilities.Body;
 import rps.app.game.Game;
 import rps.app.game.GameHistory;
 import rps.app.gamelogic.GameRunning;
@@ -16,7 +16,7 @@ public class PlayActionsService {
     private static final String PLAY_PAPER = "PAPER";
     private static final String PLAY_SCISSORS = "SCISSORS";
 
-    public Response readyPlayer(String gamesessionid, long playerId) {
+    public Body readyPlayer(String gamesessionid, long playerId) {
         if (playerAndGameValid(gamesessionid, playerId)) {
             Game game = getGame(gamesessionid);
             if (game.hasAReadyPlayer()) {
@@ -25,14 +25,14 @@ public class PlayActionsService {
                 return readyPlayer(game, playerId);
             }
         }
-        return new DefaultResponse("Game or Player Not Found", "INVALID");
+        return new DefaultBody("Game or Player Not Found", "INVALID");
     }
 
-    public Response makeAMove(String gamesessionid, long playerId, String move) {
+    public Body makeAMove(String gamesessionid, long playerId, String move) {
         return makeAMove(getGame(gamesessionid), playerId, move);
     }
 
-    public Response makeAMove(Game game, long playerId, String move) {
+    public Body makeAMove(Game game, long playerId, String move) {
         if (isPlayable(game)) {
             if (Game.State.READY.equals(game.getState())) {
                 changeGameStatus(game, Game.State.INPROGRESS);
@@ -42,14 +42,14 @@ public class PlayActionsService {
 
             if (game.hasOtherPlayerPlayed()) {
                 game.updatePlayAction(playAction);
-                Response winner = evaluateGame(game);
+                Body winner = evaluateGame(game);
                 if (winner == null) {
-                    new DefaultResponse("Improper Response", "INVALID");
+                    new DefaultBody("Improper Response", "INVALID");
                 }
                 changeGameStatus(game, Game.State.OVER);
                 if ("TIE".equals(winner.getState()))
                 {
-                    return new DefaultResponse("Its a TIE", "TIE");
+                    return new DefaultBody("Its a TIE", "TIE");
                 }
                 winner = getPlayer(game, Long.parseLong(winner.getState()));
                 changePlayerStatuses(game, (Player) winner);
@@ -59,8 +59,9 @@ public class PlayActionsService {
                 return game;
             }
         }
-        return new DefaultResponse("The Other Player is Not Yet Ready", "INVALID");
+        return new DefaultBody("The Other Player is Not Yet Ready", "INVALID");
     }
+
 
     private void changePlayerStatuses(Game game, Player winningPlayer) {
         changePlayerState(winningPlayer, Player.State.WIN);
@@ -98,7 +99,7 @@ public class PlayActionsService {
         return new Result(String.valueOf(winnerId));
     }
 
-    public class Result implements Response {
+    public class Result implements Body {
         private String state;
 
         public Result(String state) {
@@ -109,13 +110,13 @@ public class PlayActionsService {
         public String getState() { return state;}
     }
 
-    private Response readyPlayer(Game game, long player) {
+    private Body readyPlayer(Game game, long player) {
         Player playerX = getPlayer(game, player);
         playerX.setState(Player.State.READY);
         return playerX;
     }
 
-    private Response readyGameAndPlayer(Game game, long player) {
+    private Body readyGameAndPlayer(Game game, long player) {
         Player playerX = getPlayer(game, player);
         playerX.setState(Player.State.READY);
         game.setState(Game.State.READY);

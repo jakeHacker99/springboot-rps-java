@@ -8,12 +8,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import rps.app.Response;
+import rps.app.utilities.Body;
 import rps.app.game.Game;
 import rps.app.game.Game.State;
 import rps.app.game.GameHistory;
 import rps.app.player.Player;
-import rps.app.AppUtils;
+import rps.app.utilities.AppUtils;
 import rps.app.player.PlayersStack;
 
 @Service
@@ -22,7 +22,7 @@ public class GameService {
     private Map<Long, Player> players = new HashMap<>();
     private List<Game> games = new ArrayList<>();
 
-    public Response spawnGame(PlayersStack availablePlayers) {
+    public Body spawnGame(PlayersStack availablePlayers) {
         if (isEnoughPlayersToSpawnGame(availablePlayers)) {
             return spawnNewGame(availablePlayers);
         } else {
@@ -30,7 +30,7 @@ public class GameService {
         }
     }
 
-    private Response defaultResponse(PlayersStack availablePlayers) {
+    private Body defaultResponse(PlayersStack availablePlayers) {
         List<Player> pickedPlayers = new ArrayList<Player>();
         pickedPlayers.addAll(availablePlayers.getPlayers());
         return availablePlayers.getPlayers().peek();
@@ -50,7 +50,7 @@ public class GameService {
         return newGame;
     }
 
-    private Game startNewGame(Player playerOne, Player playerTwo) {
+    public Game startNewGame(Player playerOne, Player playerTwo) {
         List<Player> pickedPlayers = new ArrayList<>();
         pickedPlayers.add(playerOne);
         pickedPlayers.add(playerTwo);

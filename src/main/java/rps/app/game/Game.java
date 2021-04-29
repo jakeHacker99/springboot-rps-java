@@ -7,13 +7,13 @@ import java.util.function.Consumer;
 
 
 
-import rps.app.Response;
+import rps.app.utilities.Body;
 import rps.app.player.Player;
 import rps.app.gamelogic.GameRunning;
 import rps.app.gamelogic.RulesForGame;
 import rps.app.gamelogic.Selection;
 
-public class Game implements Response {
+public class Game implements Body {
 
 
     private String gameId;

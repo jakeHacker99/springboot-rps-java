@@ -4,13 +4,13 @@ import java.util.Optional;
 import java.util.Random;
 
 
-import rps.app.Response;
+import rps.app.utilities.Body;
 import rps.app.gamelogic.Selection;
 import rps.app.game.Game;
 
 
 
-public class Player implements Response {
+public class Player implements Body {
 
 
     private String name;

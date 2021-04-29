@@ -1,8 +1,8 @@
-package rps.app;
+package rps.app.utilities;
 
 import rps.app.player.PlayersStack;
 
-public class DefaultResponse implements Response {
+public class DefaultBody implements Body {
 
     private String reply;
     private String state;
@@ -12,7 +12,7 @@ public class DefaultResponse implements Response {
         return reply;
     }
 
-    public DefaultResponse(String reply, String state) {
+    public DefaultBody(String reply, String state) {
         this.playersReady = PlayersStack.getInstance().size();
         this.reply = reply;
         this.state = state;

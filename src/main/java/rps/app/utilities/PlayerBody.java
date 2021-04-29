@@ -1,9 +1,9 @@
-package rps.app.controller;
+package rps.app.utilities;
 
 import rps.app.game.Game;
 import rps.app.player.Player;
 
-public class PlayerResponse {
+public class PlayerBody {
 
     Long playerId;
     String name;
@@ -11,13 +11,14 @@ public class PlayerResponse {
     String opponent;
     Game.State gameState;
 
-    PlayerResponse(Player player) {
+    public PlayerBody(Player player) {
         this.playerId = player.getPlayerId();
         this.name = player.getNickName();
         this.state = player.getState();
         this.opponent = player.getOpponentNickName();
         this.gameState = player.getGameState();
     }
+
 
     public Long getPlayerId() {
         return playerId;
