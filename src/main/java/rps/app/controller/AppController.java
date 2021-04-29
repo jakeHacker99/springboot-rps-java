@@ -1,6 +1,5 @@
 package rps.app.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -8,18 +7,14 @@ import rps.app.services.GameService;
 import rps.app.gamelogic.Selection;
 import rps.app.player.Player;
 import rps.app.utilities.AppUtils;
-import rps.app.utilities.DefaultBody;
 import rps.app.utilities.PlayerBody;
 
-import java.util.UUID;
 
 @RestController
 public class AppController {
 
-    @Autowired
     private final GameService gameService;
 
-    @Autowired
     public AppController(GameService gameService) {
         this.gameService = gameService;
     }
@@ -27,11 +22,6 @@ public class AppController {
     @GetMapping("")
     String getSite() {
         return "Jakob & Yazan";
-    }
-
-    @GetMapping(value = "/test")
-    public DefaultBody test() {
-        return new DefaultBody("Hi", "testing");
     }
 
     @PostMapping(value = "/register/{name}")
