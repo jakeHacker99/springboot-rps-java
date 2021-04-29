@@ -1,9 +1,12 @@
-package rps.app.utilities;
+package rps.app.controller;
 
+
+import lombok.Data;
 import rps.app.game.Game;
 import rps.app.player.Player;
+@Data
 
-public class PlayerBody {
+public class PlayerResponse {
 
     Long playerId;
     String name;
@@ -11,7 +14,7 @@ public class PlayerBody {
     String opponent;
     Game.State gameState;
 
-    public PlayerBody(Player player) {
+    PlayerResponse(Player player) {
         this.playerId = player.getPlayerId();
         this.name = player.getNickName();
         this.state = player.getState();
@@ -20,23 +23,4 @@ public class PlayerBody {
     }
 
 
-    public Long getPlayerId() {
-        return playerId;
-    }
-
-    public String getNickName() {
-        return name;
-    }
-
-    public Player.State getState() {
-        return state;
-    }
-
-    public String getOpponent() {
-        return opponent;
-    }
-
-    public Game.State getGameState() {
-        return gameState;
-    }
 }
