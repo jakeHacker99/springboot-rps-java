@@ -1,6 +1,13 @@
 package rps.app.gamelogic;
 
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
 public class GameRunning {
+    @Id
     private String game;
     private Long player;
     private Selection selection;
@@ -11,27 +18,7 @@ public class GameRunning {
         this.selection = selection;
     }
 
-    public String getGame() {
-        return game;
-    }
+    public GameRunning() {
 
-    public void setGame(String game) {
-        this.game = game;
-    }
-
-    public Long getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Long player) {
-        this.player = player;
-    }
-
-    public Selection getSelection() {
-        return selection;
-    }
-
-    public void setSelection(Selection selection) {
-        this.selection = selection;
     }
 }

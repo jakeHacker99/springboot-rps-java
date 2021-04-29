@@ -13,22 +13,22 @@ import rps.app.gamelogic.GameRunning;
 import rps.app.gamelogic.RulesForGame;
 import rps.app.gamelogic.Selection;
 
+import javax.persistence.*;
+
+@Entity
 public class Game implements Body {
 
-
+    @Id
     private String gameId;
 
+    @OneToMany
     private List<Player> players;
     private State state;
+    @OneToOne
     private Player winner;
-
+    @OneToMany
     private List<GameRunning> actions = new ArrayList<>();
 
-
-    private final Consumer<Player> makeWinnerOfGame = winner -> {
-        setState(State.OVER);
-        this.winner = winner;
-    };
 
     public Game(String gameId) {
         this.gameId = gameId;
@@ -36,6 +36,13 @@ public class Game implements Body {
     }
 
     public Game() {
+
+    }
+
+
+    public void makeWinnerOfGame(Player winner) {
+        setState(State.OVER);
+        this.winner = winner;
 
     }
 
@@ -136,7 +143,7 @@ public class Game implements Body {
         }
 
         getOpponent(player).ifPresent(opponent -> opponent.getMove().ifPresent(move -> {
-            evaluateMove(player, opponent).ifPresent(makeWinnerOfGame);
+            evaluateMove(player, opponent).ifPresent(this::makeWinnerOfGame);
             opponent.updateState();
         }));
 

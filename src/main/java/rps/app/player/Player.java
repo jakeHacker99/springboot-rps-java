@@ -8,18 +8,25 @@ import rps.app.utilities.Body;
 import rps.app.gamelogic.Selection;
 import rps.app.game.Game;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
+@Entity
 public class Player implements Body {
 
-
     private String name;
-
+    @Id
     private long   playerId;
     private State  state;
     private Selection selection;
+    @OneToOne
     private Game game;
 
+    public Player() {
+
+    }
 
 
     public Game getGame() {
