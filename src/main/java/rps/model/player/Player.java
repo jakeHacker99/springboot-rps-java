@@ -1,12 +1,12 @@
-package rps.app.player;
+package rps.model.player;
 
 import java.util.Optional;
 import java.util.Random;
 
 
-import rps.app.utilities.Body;
-import rps.app.gamelogic.Selection;
-import rps.app.game.Game;
+import rps.model.game.Game;
+import rps.model.utilities.Body;
+import rps.model.gamelogic.Selection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -59,6 +59,18 @@ public class Player implements Body {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPlayerId(long playerId) {
+        this.playerId = playerId;
+    }
+
+    public void setSelection(Selection selection) {
+        this.selection = selection;
     }
 
     public String getOpponentNickName() {
@@ -132,6 +144,8 @@ public class Player implements Body {
             return "IDLE";
         }
     }
+
+
 
 
 }

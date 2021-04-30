@@ -1,4 +1,4 @@
-package rps.app.gamelogic;
+package rps.model.gamelogic;
 
 public class RulesForGame {
 

@@ -1,4 +1,4 @@
-package rps.app.player;
+package rps.model.player;
 
 
 import java.util.Stack;

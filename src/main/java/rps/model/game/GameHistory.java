@@ -1,4 +1,4 @@
-package rps.app.game;
+package rps.model.game;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,17 +1,17 @@
-package rps.app.controller;
+package rps.controller;
 
 import org.springframework.web.bind.annotation.*;
 
 
-import rps.app.services.GameService;
-import rps.app.gamelogic.Selection;
-import rps.app.player.Player;
-import rps.app.utilities.AppUtils;
-import rps.app.utilities.PlayerBody;
+import rps.services.GameService;
+import rps.model.gamelogic.Selection;
+import rps.model.player.Player;
+import rps.model.utilities.PlayerBody;
 
 
 @RestController
 public class AppController {
+
 
     private final GameService gameService;
 
@@ -51,10 +51,18 @@ public class AppController {
     // Get token
     // Get rps.app.token
     @GetMapping(value = "auth/{token}")
-    public String getToken(@PathVariable("token") String name){
-        return AppUtils.createNewId();
+    public String getToken(@PathVariable("token") String token){
 
+        String myRegexp = String.format("-d{19}");
+
+        if(token !=null && token.length() == 19 || token.equals( myRegexp )){
+            return "this token is valid";
+        }else{
+            return "not a valid token";
+        }
     }
+
+
 
     //  start new game
    /* @GetMapping(value = "/games/start")

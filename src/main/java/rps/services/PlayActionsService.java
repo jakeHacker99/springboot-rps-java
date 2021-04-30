@@ -1,13 +1,13 @@
-package rps.app.services;
+package rps.services;
 
 import org.springframework.stereotype.Service;
-import rps.app.utilities.DefaultBody;
-import rps.app.utilities.Body;
-import rps.app.game.Game;
-import rps.app.game.GameHistory;
-import rps.app.gamelogic.GameRunning;
-import rps.app.gamelogic.Selection;
-import rps.app.player.Player;
+import rps.model.utilities.DefaultBody;
+import rps.model.utilities.Body;
+import rps.model.game.Game;
+import rps.model.game.GameHistory;
+import rps.model.gamelogic.GameRunning;
+import rps.model.gamelogic.Selection;
+import rps.model.player.Player;
 
 @Service
 public class PlayActionsService {

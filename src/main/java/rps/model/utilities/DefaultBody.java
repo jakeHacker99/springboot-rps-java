@@ -1,6 +1,6 @@
-package rps.app.utilities;
+package rps.model.utilities;
 
-import rps.app.player.PlayersStack;
+import rps.model.player.PlayersStack;
 
 public class DefaultBody implements Body {
 

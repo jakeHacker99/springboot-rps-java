@@ -1,4 +1,4 @@
-package rps.app.utilities;
+package rps.model.utilities;
 
 import java.util.UUID;
 

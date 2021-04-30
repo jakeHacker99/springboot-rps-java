@@ -1,4 +1,4 @@
-package rps.app.services;
+package rps.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,13 +8,12 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import rps.app.utilities.Body;
-import rps.app.game.Game;
-import rps.app.game.Game.State;
-import rps.app.game.GameHistory;
-import rps.app.player.Player;
-import rps.app.utilities.AppUtils;
-import rps.app.player.PlayersStack;
+import rps.model.utilities.Body;
+import rps.model.game.Game;
+import rps.model.game.GameHistory;
+import rps.model.player.Player;
+import rps.model.utilities.AppUtils;
+import rps.model.player.PlayersStack;
 
 @Service
 public class GameService {
@@ -43,7 +42,7 @@ public class GameService {
 
         Game newGame = new Game(AppUtils.createNewId());
         newGame.setPlayers(pickedPlayers);
-        newGame.setState(State.WAIT);
+        newGame.setState(Game.State.WAIT);
         pickedPlayers.get(0).setGame(newGame);
         pickedPlayers.get(1).setGame(newGame);
         GameHistory.getInstance().add(newGame);
@@ -58,7 +57,7 @@ public class GameService {
         Game newGame = new Game(AppUtils.createNewId());
         games.add(newGame);
         newGame.setPlayers(pickedPlayers);
-        newGame.setState(State.READY);
+        newGame.setState(Game.State.READY);
         playerOne.setGame(newGame);
         playerTwo.setGame(newGame);
         GameHistory.getInstance().add(newGame);

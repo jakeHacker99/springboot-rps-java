@@ -1,9 +1,10 @@
-package rps.app.utilities;
+package rps.model.utilities;
 
 
 import lombok.Data;
-import rps.app.game.Game;
-import rps.app.player.Player;
+import rps.model.game.Game;
+import rps.model.player.Player;
+
 @Data
 
 public class PlayerBody {

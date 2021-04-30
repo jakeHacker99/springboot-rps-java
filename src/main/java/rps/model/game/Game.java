@@ -1,17 +1,15 @@
-package rps.app.game;
+package rps.model.game;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 
-
-import rps.app.utilities.Body;
-import rps.app.player.Player;
-import rps.app.gamelogic.GameRunning;
-import rps.app.gamelogic.RulesForGame;
-import rps.app.gamelogic.Selection;
+import rps.model.utilities.Body;
+import rps.model.player.Player;
+import rps.model.gamelogic.GameRunning;
+import rps.model.gamelogic.RulesForGame;
+import rps.model.gamelogic.Selection;
 
 import javax.persistence.*;
 
@@ -43,7 +41,6 @@ public class Game implements Body {
     public void makeWinnerOfGame(Player winner) {
         setState(State.OVER);
         this.winner = winner;
-
     }
 
     public void updatePlayAction(GameRunning playRunning) {
