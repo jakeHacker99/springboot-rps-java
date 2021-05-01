@@ -22,8 +22,8 @@ public class Player implements Body {
     private long   playerId;
     private State  state;
     private Selection selection;
-    @OneToOne
-    @JoinTable(name = "newTable")
+    @OneToOne()
+//    @JoinTable(name = "newTable")
     private Game game;
 
     public Player() {

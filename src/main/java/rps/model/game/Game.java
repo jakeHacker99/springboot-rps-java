@@ -20,7 +20,7 @@ public class Game implements Body {
     private String gameId;
 
     @OneToMany
-    @JoinTable(name = "player")
+//    @JoinTable(name = "player")
     private List<Player> players;
     private State state;
     @OneToOne
