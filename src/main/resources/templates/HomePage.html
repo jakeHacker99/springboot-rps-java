@@ -1,56 +1,57 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns="http://www.w3.org/1999/html">-->
-<!--<head>-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
 
-<!--  <meta charset="UTF-8">-->
-<!--  <title>Ta Sten</title>-->
+  <meta charset="UTF-8">
+  <title>Ta Sten</title>
 
 
-<!--  </meta>-->
-<!--  <style>-->
-<!--    #games {-->
-<!--      font-family: Arial, Helvetica, sans-serif;-->
-<!--      border-collapse: collapse;-->
-<!--      width: 100%;-->
-<!--    }-->
+  </meta>
+  <style>
+    #games {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
 
-<!--    #games td, #games th {-->
-<!--      border: 1px solid #ddd;-->
-<!--      padding: 8px;-->
-<!--    }-->
+    #games td, #games th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
 
-<!--    #games tr:nth-child(even){background-color: #9370DB;}-->
+    #games tr:nth-child(even){background-color: #9370DB;}
 
-<!--    #games tr:hover {background-color: #ddd;}-->
+    #games tr:hover {background-color: #ddd;}
 
-<!--    #games th {-->
-<!--      padding-top: 12px;-->
-<!--      padding-bottom: 12px;-->
-<!--      text-align: left;-->
-<!--      background-color:     #4B0082;-->
-<!--      color: white;-->
-<!--    }-->
-<!--  </style>-->
+    #games th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color:     #4B0082;
+      color: white;
+    }
+  </style>
 
-<!--</head>-->
-<!--<body>-->
-<!--<img th:src="@{/images/rps.png}"  style=" display: block;-->
-<!--  margin-left: auto;-->
-<!--  margin-right: auto;-->
-<!--  width: 700px;"/>-->
+</head>
+<body>
+<img th:src="@{/images/rps.png}"  style=" display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;"/>
 
-<!--<table id="games">-->
-<!--  <tr>-->
-<!--    <th >Name</th>-->
-<!--    <th >Player Id</th>-->
-<!--    <th >State</th>-->
-<!--  </tr>-->
-<!--&lt;!&ndash;  <tr th:each="p : ${Player}">&ndash;&gt;-->
-<!--&lt;!&ndash;    <td th:text="${p.nickName}" <a href="/player/${player.nickName}">jake</a>></td>&ndash;&gt;-->
-<!--&lt;!&ndash;    <td th:text="${p.playerId}" >124</td>&ndash;&gt;-->
-<!--&lt;!&ndash;    <td th:text="${p.state}" >missing</td>&ndash;&gt;-->
-<!--&lt;!&ndash;  </tr>&ndash;&gt;-->
-<!--</table>-->
+<table id="games">
+  <tr>
+    <th >Name</th>
+    <th >State</th>
+    <th >move</th>
+  </tr>
+  <tr th:each="p : ${players}">
+    <td th:text="${p.name}" ></td>
+    <td th:text="${p.state}" ></td>
+    <td th:text="${p.selection}" ></td>
 
-<!--</body>-->
-<!--</html>-->
+  </tr>
+</table>
+
+</body>
+</html>

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-import rps.model.utilities.Body;
+import rps.model.utils.Body;
 import rps.model.player.Player;
 import rps.model.gamelogic.GameRunning;
 import rps.model.gamelogic.RulesForGame;
@@ -20,7 +20,6 @@ public class Game implements Body {
     private String gameId;
 
     @OneToMany
-//    @JoinTable(name = "player")
     private List<Player> players;
     private State state;
     @OneToOne
@@ -89,6 +88,10 @@ public class Game implements Body {
 
     public String getGameId() {
         return gameId;
+    }
+
+    public List<GameRunning> getActions() {
+        return actions;
     }
 
     public void setGameId(String gameId) {

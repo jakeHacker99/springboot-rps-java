@@ -1,4 +1,4 @@
-package rps.model.utilities;
+package rps.model.utils;
 
 
 import lombok.Data;

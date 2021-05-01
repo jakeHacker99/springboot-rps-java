@@ -5,12 +5,11 @@ import java.util.Random;
 
 
 import rps.model.game.Game;
-import rps.model.utilities.Body;
+import rps.model.utils.Body;
 import rps.model.gamelogic.Selection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 
 
@@ -23,7 +22,6 @@ public class Player implements Body {
     private State  state;
     private Selection selection;
     @OneToOne()
-//    @JoinTable(name = "newTable")
     private Game game;
 
     public Player() {
@@ -50,6 +48,7 @@ public class Player implements Body {
     public String getNickName() {
         return name;
     }
+
 
     public long getPlayerId() {
         return playerId;
@@ -93,6 +92,14 @@ public class Player implements Body {
         return game == null ? null : game.getState() ;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+    public Selection getSelection() {
+        return selection;
+    }
     public void move(Selection selection) {
         if (game == null)
             throw new RuntimeException("No game!");
@@ -146,8 +153,6 @@ public class Player implements Body {
             return "IDLE";
         }
     }
-
-
 
 
 }

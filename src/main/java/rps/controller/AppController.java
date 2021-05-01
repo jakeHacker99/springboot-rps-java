@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import rps.services.GameService;
 import rps.model.gamelogic.Selection;
 import rps.model.player.Player;
-import rps.model.utilities.PlayerBody;
+import rps.model.utils.PlayerBody;
 
 
 @RestController
@@ -17,10 +17,7 @@ public class AppController {
         this.gameService = gameService;
     }
 
-    @GetMapping("")
-    String getSite() {
-        return "Jakob & Yazan";
-    }
+
 
     @PostMapping(value = "/register/{name}")
     public PlayerBody registerPlayer(@PathVariable("name") String name) {
@@ -46,8 +43,6 @@ public class AppController {
         return new PlayerBody(player);
     }
 
-    // Get token
-    // Get rps.app.token
     @GetMapping(value = "auth/{token}")
     public String getToken(@PathVariable("token") String token){
 
@@ -62,29 +57,6 @@ public class AppController {
 
 
 
-    //  start new game
-   /* @GetMapping(value = "/games/start")
-    public PlayerResponse startNewGame(){
-     return gameService.("HISDA", "new iD");
-
-    }*/
-
-    // game status
-    /*
-     * @GetMapping(value = "/games/status")
-     *
-     *
-     * */
-
-    // Game List
-    /*
-     *  @GetMapping(value = "/games")
-     * */
-
-    // Game info
-    /*
-     * @GetMapping(value = "/games/{id}")
-     * */
 
 
 }

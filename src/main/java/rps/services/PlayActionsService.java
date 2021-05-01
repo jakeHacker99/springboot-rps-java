@@ -1,8 +1,8 @@
 package rps.services;
 
 import org.springframework.stereotype.Service;
-import rps.model.utilities.DefaultBody;
-import rps.model.utilities.Body;
+import rps.model.utils.DefaultBody;
+import rps.model.utils.Body;
 import rps.model.game.Game;
 import rps.model.game.GameHistory;
 import rps.model.gamelogic.GameRunning;

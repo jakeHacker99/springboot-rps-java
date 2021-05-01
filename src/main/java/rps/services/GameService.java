@@ -8,11 +8,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import rps.model.utilities.Body;
+import rps.model.utils.Body;
 import rps.model.game.Game;
 import rps.model.game.GameHistory;
 import rps.model.player.Player;
-import rps.model.utilities.AppUtils;
+import rps.model.utils.AppUtils;
 import rps.model.player.PlayersStack;
 
 @Service
