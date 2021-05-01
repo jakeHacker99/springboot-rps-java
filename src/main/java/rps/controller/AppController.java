@@ -51,9 +51,9 @@ public class AppController {
     @GetMapping(value = "auth/{token}")
     public String getToken(@PathVariable("token") String token){
 
-        String myRegexp = String.format("-d{19}");
+        String myRegexp = String.format("-d{20}");
 
-        if(token !=null && token.length() == 19 || token.equals( myRegexp )){
+        if(token !=null && token.length() == 20 || token.equals( myRegexp )){
             return "this token is valid";
         }else{
             return "not a valid token";

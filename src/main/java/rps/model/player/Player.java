@@ -10,6 +10,7 @@ import rps.model.gamelogic.Selection;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
 
 
@@ -21,7 +22,8 @@ public class Player implements Body {
     private long   playerId;
     private State  state;
     private Selection selection;
-    @OneToOne(mappedBy = "player")
+    @OneToOne
+    @JoinTable(name = "newTable")
     private Game game;
 
     public Player() {

@@ -19,7 +19,8 @@ public class Game implements Body {
     @Id
     private String gameId;
 
-    @OneToMany(mappedBy = "games")
+    @OneToMany
+    @JoinTable(name = "player")
     private List<Player> players;
     private State state;
     @OneToOne

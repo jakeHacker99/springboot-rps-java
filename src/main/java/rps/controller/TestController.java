@@ -16,7 +16,7 @@ public class TestController {
         return new DefaultBody("Hi", "testing");
 
     }
-    @GetMapping(value =  {" ", "/", "home"})
+   /* @GetMapping(value =  {" ", "/", "home"})
     public String getHomePage(Model model){
         return "HomePage";
     }
@@ -26,7 +26,7 @@ public class TestController {
         model.addAttribute("player", playerRepository.findAll());
 
         return "player";
-    }
+    }*/
 
 }
 
