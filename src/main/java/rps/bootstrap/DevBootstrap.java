@@ -24,10 +24,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
         initData();
 
     }
-
     private void initData(){
-
-
 
         Player player1 = new Player();
         player1.setPlayerId(1);

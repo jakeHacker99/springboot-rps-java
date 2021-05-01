@@ -19,7 +19,7 @@ public class Game implements Body {
     @Id
     private String gameId;
 
-    @OneToMany
+    @OneToMany(mappedBy = "games")
     private List<Player> players;
     private State state;
     @OneToOne

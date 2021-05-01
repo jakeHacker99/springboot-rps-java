@@ -11,8 +11,6 @@ import rps.model.utilities.PlayerBody;
 
 @RestController
 public class AppController {
-
-
     private final GameService gameService;
 
     public AppController(GameService gameService) {

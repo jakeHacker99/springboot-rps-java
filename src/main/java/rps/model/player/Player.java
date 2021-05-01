@@ -21,7 +21,7 @@ public class Player implements Body {
     private long   playerId;
     private State  state;
     private Selection selection;
-    @OneToOne
+    @OneToOne(mappedBy = "player")
     private Game game;
 
     public Player() {
