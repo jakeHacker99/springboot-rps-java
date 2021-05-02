@@ -28,7 +28,8 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         initData();
 
     }
-    private void initData(){
+
+    private void initData() {
 
         Game game1 = new Game();
         game1.setGameId("2");
@@ -40,7 +41,7 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         game2.getWinner().toString();
 
 
-        Game game3= new Game();
+        Game game3 = new Game();
         game3.setGameId("4");
         game3.setState(Game.State.WAIT);
 
@@ -69,13 +70,10 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         game9.setGameId("10");
         game9.setState(Game.State.OVER);
         game9.getWinner();
-        Player p1 = new Player();
 
         Game game10 = new Game();
         game10.setGameId("9");
         game10.setState(Game.State.OVER);
-
-
 
 
         gameRepository.save(game1);
@@ -90,7 +88,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         gameRepository.save(game10);
 
 
-
         Player player1 = new Player();
 
         player1.setPlayerId(1);
@@ -100,8 +97,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player1.setGame(game1);
 
 
-        playerRepository.save(player1);
-
         Player player2 = new Player();
         player2.setPlayerId(2);
         player2.setName("yazan");
@@ -109,8 +104,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
 
         player2.setState(Player.State.READY);
         player2.setGame(game2);
-
-        playerRepository.save(player2);
 
 
         Player player3 = new Player();
@@ -120,7 +113,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player3.setState(Player.State.WAIT);
         player3.setGame(game3);
 
-        playerRepository.save(player3);
 
         Player player11 = new Player();
         player11.setPlayerId(4);
@@ -131,9 +123,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player11.setGame(game4);
 
 
-
-        playerRepository.save(player11);
-
         Player player4 = new Player();
         player4.setPlayerId(5);
         player4.setName("gabriella");
@@ -141,8 +130,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player4.setState(Player.State.PLAYING);
         player4.setGame(game5);
 
-
-        playerRepository.save(player4);
 
         Player player5 = new Player();
         player5.setPlayerId(6);
@@ -152,7 +139,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player5.setState(Player.State.LOSE);
         player5.setGame(game6);
 
-        playerRepository.save(player5);
 
         Player player6 = new Player();
         player6.setPlayerId(7);
@@ -161,8 +147,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player6.setState(Player.State.PLAYING);
         player6.setGame(game7);
 
-
-        playerRepository.save(player6);
 
         Player player7 = new Player();
         player7.setPlayerId(8);
@@ -173,8 +157,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player7.setGame(game8);
 
 
-        playerRepository.save(player7);
-
         Player player8 = new Player();
         player8.setPlayerId(9);
         player8.setName("eyuel");
@@ -182,8 +164,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
         player8.setState(Player.State.WAIT);
         player8.setGame(game9);
 
-
-        playerRepository.save(player8);
 
         Player player9 = new Player();
         player9.setPlayerId(10);
@@ -193,7 +173,18 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
 
         player9.setGame(game10);
 
+
+        playerRepository.save(player1);
+        playerRepository.save(player2);
+        playerRepository.save(player3);
+        playerRepository.save(player4);
+        playerRepository.save(player5);
+        playerRepository.save(player6);
+        playerRepository.save(player7);
+        playerRepository.save(player8);
         playerRepository.save(player9);
+        playerRepository.save(player11);
+
 
     }
 
@@ -204,7 +195,6 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
     public PlayerRepository getPlayerRepository() {
         return playerRepository;
     }
-
 
 
 }
