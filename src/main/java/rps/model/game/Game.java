@@ -115,6 +115,10 @@ public class Game implements Body {
         this.players = players;
     }
 
+    public void setWinner(Player winner) {
+        this.winner = winner;
+    }
+
     public String getOpponentNickName(Player player) {
         return getOpponent(player)
                 .map(Player::getNickName)

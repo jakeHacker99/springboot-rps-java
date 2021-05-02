@@ -1,5 +1,6 @@
 package rps.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -11,6 +12,7 @@ import rps.model.utils.PlayerBody;
 
 @RestController
 public class AppController {
+    @Autowired
     private final GameService gameService;
 
     public AppController(GameService gameService) {
@@ -54,9 +56,4 @@ public class AppController {
             return "not a valid token";
         }
     }
-
-
-
-
-
 }

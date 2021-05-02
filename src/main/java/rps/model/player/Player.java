@@ -29,6 +29,10 @@ public class Player implements Body {
     }
 
 
+    public Player(long playerId) {
+        this.playerId = playerId;
+    }
+
     public Game getGame() {
         return game;
     }
