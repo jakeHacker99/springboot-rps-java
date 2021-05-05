@@ -24,12 +24,12 @@ public class AppController {
 
     //  Get token
     @GetMapping(value = "/auth/token")
-    public UUID getToken() {
-        AppUtils.createNewId();
+    public String getToken() {
+        return AppUtils.createNewId();
 
     }
 
-    // set name
+   /* // set name
     @PostMapping(value = "/user/name")
     public PlayerBody setName(@PathVariable("name") String name) {
         return new PlayerBody(gameService.registerPlayer(name));
@@ -69,7 +69,7 @@ public class AppController {
     public PlayerBody makeMove(@PathVariable("name") String name) {
         return new PlayerBody(gameService.registerPlayer(name));
     }
-
+*/
 
 
 
