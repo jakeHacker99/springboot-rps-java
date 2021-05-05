@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
+import rps.model.utils.AppUtils;
 import rps.services.GameService;
 import rps.model.gamelogic.Selection;
 import rps.model.player.Player;
 import rps.model.utils.PlayerBody;
+
+import java.util.UUID;
 
 
 @RestController
@@ -18,6 +21,56 @@ public class AppController {
     public AppController(GameService gameService) {
         this.gameService = gameService;
     }
+
+    //  Get token
+    @GetMapping(value = "/auth/token")
+    public UUID getToken() {
+        AppUtils.createNewId();
+
+    }
+
+    // set name
+    @PostMapping(value = "/user/name")
+    public PlayerBody setName(@PathVariable("name") String name) {
+        return new PlayerBody(gameService.registerPlayer(name));
+    }
+
+    // Start Game
+    @GetMapping(value = "/games/start")
+    public PlayerBody startGame(@PathVariable("name") String name) {
+        return new PlayerBody(gameService.registerPlayer(name));
+    }
+
+    // joinGame
+
+    @GetMapping(value = "/games/start")
+    public PlayerBody joinGame(@PathVariable("name") String name) {
+        return new PlayerBody(gameService.registerPlayer(name));
+    }
+
+
+    // Game state
+
+    @GetMapping(value = "/games")
+    public PlayerBody getGames(@PathVariable("name") String name) {
+        return new PlayerBody(gameService.registerPlayer(name));
+    }
+
+    // Game info
+
+    @GetMapping(value = "/games/{id}")
+    public PlayerBody gameInfo(@PathVariable("id") String name) {
+        return new PlayerBody(gameService.registerPlayer(name));
+    }
+
+    // Make move
+
+    @GetMapping(value = "/games/move/{sign}")
+    public PlayerBody makeMove(@PathVariable("name") String name) {
+        return new PlayerBody(gameService.registerPlayer(name));
+    }
+
+
 
 
 
