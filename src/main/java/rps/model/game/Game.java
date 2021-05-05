@@ -33,9 +33,12 @@ public class Game implements Body {
         this.state = State.WAIT;
     }
 
+
     public Game() {
+        
 
     }
+
 
 
     public void makeWinnerOfGame(Player winner) {

@@ -6,7 +6,6 @@ import rps.model.game.Game;
 import rps.model.player.Player;
 
 @Data
-
 public class PlayerBody {
 
     Long playerId;

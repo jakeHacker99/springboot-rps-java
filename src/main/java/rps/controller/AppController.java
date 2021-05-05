@@ -4,13 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import rps.model.utils.AppUtils;
+import rps.tokens.Token;
 import rps.services.GameService;
 import rps.model.gamelogic.Selection;
 import rps.model.player.Player;
 import rps.model.utils.PlayerBody;
-
-import java.util.UUID;
+import rps.tokens.TokenService;
 
 
 @RestController
@@ -18,25 +17,33 @@ public class AppController {
     @Autowired
     private final GameService gameService;
 
+    TokenService tokenService;
+
     public AppController(GameService gameService) {
         this.gameService = gameService;
     }
 
     //  Get token
     @GetMapping(value = "/auth/token")
-    public String getToken() {
-        return AppUtils.createNewId();
+    public Token getToken() {
+        return Token.create();
 
     }
 
-   /* // set name
-    @PostMapping(value = "/user/name")
-    public PlayerBody setName(@PathVariable("name") String name) {
-        return new PlayerBody(gameService.registerPlayer(name));
+
+    // set name
+    @PostMapping(value = "/user/{name}")
+    public PlayerBody setName(@PathVariable("name") String name,
+                               @RequestHeader(value = "token",required = false) String tokenId) {
+        Token token = tokenService.getTokenById(tokenId);
+        System.out.println("token is" + token);
+        return new PlayerBody(gameService.registerPlayerById(token));
     }
+
+
 
     // Start Game
-    @GetMapping(value = "/games/start")
+    /*@GetMapping(value = "/games/start")
     public PlayerBody startGame(@PathVariable("name") String name) {
         return new PlayerBody(gameService.registerPlayer(name));
     }
@@ -70,7 +77,6 @@ public class AppController {
         return new PlayerBody(gameService.registerPlayer(name));
     }
 */
-
 
 
 

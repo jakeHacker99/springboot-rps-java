@@ -14,8 +14,8 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
 
     private GameRepository gameRepository;
 
-
     private PlayerRepository playerRepository;
+
 
 
     public Data(GameRepository gameRepository, PlayerRepository playerRepository) {

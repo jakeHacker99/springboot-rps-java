@@ -2,11 +2,15 @@ package rps.model.player;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.UUID;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import rps.model.game.Game;
 import rps.model.utils.Body;
 import rps.model.gamelogic.Selection;
+import rps.tokens.Token;
+import rps.tokens.TokenService;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,6 +19,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Player implements Body {
+
 
     private String name;
     @Id
@@ -31,6 +36,9 @@ public class Player implements Body {
 
     public Player(long playerId) {
         this.playerId = playerId;
+    }
+
+    public Player(String nickname, Token id) {
     }
 
     public Game getGame() {

@@ -9,7 +9,6 @@ import rps.model.utils.DefaultBody;
 import rps.repositories.GameRepository;
 import rps.repositories.PlayerRepository;
 
-import java.util.List;
 
 @Controller
 public class TestController {

@@ -14,6 +14,7 @@ import rps.model.game.GameHistory;
 import rps.model.player.Player;
 import rps.model.utils.AppUtils;
 import rps.model.player.PlayersStack;
+import rps.tokens.Token;
 
 @Service
 public class GameService {
@@ -83,6 +84,12 @@ public class GameService {
 
     public Player registerPlayer(String nickname) {
         Player newPlayer = new Player(nickname);
+        players.put(newPlayer.getPlayerId(), newPlayer);
+        return newPlayer;
+    }
+
+    public Player registerPlayerById(String nickname, Token id) {
+        Player newPlayer = new Player(nickname,id);
         players.put(newPlayer.getPlayerId(), newPlayer);
         return newPlayer;
     }
