@@ -30,7 +30,7 @@ public class Game implements Body {
 
     public Game(String gameId) {
         this.gameId = gameId;
-        this.state = State.WAIT;
+        this.state = State.NONE;
     }
 
 
@@ -141,13 +141,13 @@ public class Game implements Body {
                 .map(Player::getState)
                 .orElse(Player.State.WAIT)
                 .equals(Player.State.READY)) {
-            state = State.READY;
+            state = State.OPEN;
         }
     }
 
     public void playerMove(Player player) {
-        if (State.READY.equals(getState())) {
-            setState(State.INPROGRESS);
+        if (State.OPEN.equals(getState())) {
+            setState(State.ACTIVE);
         }
 
         getOpponent(player).ifPresent(opponent -> opponent.getMove().ifPresent(move -> {
@@ -173,7 +173,7 @@ public class Game implements Body {
     }
 
     public enum State {
-        WAIT(3), READY(2), INPROGRESS(1), OVER(0);
+        DRAW(4), NONE(3), OPEN(2), ACTIVE(1), OVER(0);
         private int value;
 
         State(int value) {

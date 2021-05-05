@@ -3,7 +3,7 @@ package rps.model.gamelogic;
 public class RulesForGame {
 
     public Selection result(Selection s1, Selection s2) {
-        if(s1.getValue() == s2.getValue()) {
+        if( s1.getValue() == s2.getValue()) {
 
             return Selection.Draw;
 

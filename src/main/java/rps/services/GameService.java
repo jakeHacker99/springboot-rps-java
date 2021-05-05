@@ -43,7 +43,7 @@ public class GameService {
 
         Game newGame = new Game(AppUtils.createNewId());
         newGame.setPlayers(pickedPlayers);
-        newGame.setState(Game.State.WAIT);
+        newGame.setState(Game.State.NONE);
         pickedPlayers.get(0).setGame(newGame);
         pickedPlayers.get(1).setGame(newGame);
         GameHistory.getInstance().add(newGame);
@@ -58,7 +58,7 @@ public class GameService {
         Game newGame = new Game(AppUtils.createNewId());
         games.add(newGame);
         newGame.setPlayers(pickedPlayers);
-        newGame.setState(Game.State.READY);
+        newGame.setState(Game.State.OPEN);
         playerOne.setGame(newGame);
         playerTwo.setGame(newGame);
         GameHistory.getInstance().add(newGame);
@@ -88,8 +88,8 @@ public class GameService {
         return newPlayer;
     }
 
-    public Player registerPlayerById(String nickname, Token id) {
-        Player newPlayer = new Player(nickname,id);
+    public Player registerPlayerById( long id) {
+        Player newPlayer = new Player(id);
         players.put(newPlayer.getPlayerId(), newPlayer);
         return newPlayer;
     }

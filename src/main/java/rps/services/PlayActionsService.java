@@ -34,8 +34,8 @@ public class PlayActionsService {
 
     public Body makeAMove(Game game, long playerId, String move) {
         if (isPlayable(game)) {
-            if (Game.State.READY.equals(game.getState())) {
-                changeGameStatus(game, Game.State.INPROGRESS);
+            if (Game.State.OPEN.equals(game.getState())) {
+                changeGameStatus(game, Game.State.ACTIVE);
             }
             GameRunning playAction = new GameRunning(game.getGameId(), playerId, getMove(move));
             changePlayerState(getPlayer(game,playerId), Player.State.PLAYING);
@@ -69,7 +69,7 @@ public class PlayActionsService {
     }
 
     private boolean isPlayable(Game game) {
-        return game.getState().equals(Game.State.READY) || game.getState().equals(Game.State.INPROGRESS);
+        return game.getState().equals(Game.State.OPEN) || game.getState().equals(Game.State.ACTIVE);
     }
 
     private Selection getMove(String move) {
@@ -119,7 +119,7 @@ public class PlayActionsService {
     private Body readyGameAndPlayer(Game game, long player) {
         Player playerX = getPlayer(game, player);
         playerX.setState(Player.State.READY);
-        game.setState(Game.State.READY);
+        game.setState(Game.State.OPEN);
         return game;
     }
 

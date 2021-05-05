@@ -33,26 +33,26 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
 
         Game game1 = new Game();
         game1.setGameId("2");
-        game1.setState(Game.State.INPROGRESS);
+        game1.setState(Game.State.ACTIVE);
 
         Game game2 = new Game();
         game2.setGameId("1");
-        game2.setState(Game.State.INPROGRESS);
+        game2.setState(Game.State.ACTIVE);
         game2.getWinner().toString();
 
 
         Game game3 = new Game();
         game3.setGameId("4");
-        game3.setState(Game.State.WAIT);
+        game3.setState(Game.State.NONE);
 
         Game game4 = new Game();
         game4.setGameId("3");
-        game4.setState(Game.State.WAIT);
+        game4.setState(Game.State.NONE);
 
 
         Game game5 = new Game();
         game5.setGameId("6");
-        game5.setState(Game.State.INPROGRESS);
+        game5.setState(Game.State.ACTIVE);
 
         Game game6 = new Game();
         game6.setGameId("5");
@@ -64,7 +64,7 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
 
         Game game8 = new Game();
         game8.setGameId("7");
-        game8.setState(Game.State.WAIT);
+        game8.setState(Game.State.NONE);
 
         Game game9 = new Game();
         game9.setGameId("10");

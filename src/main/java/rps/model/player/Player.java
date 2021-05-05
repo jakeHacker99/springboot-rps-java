@@ -39,6 +39,9 @@ public class Player implements Body {
     }
 
     public Player(String nickname, Token id) {
+        this.name= nickname;
+        TokenService ts = new TokenService();
+        id =ts.creatToken();
     }
 
     public Game getGame() {

@@ -19,11 +19,6 @@ public class TestController {
     @Autowired
     public GameRepository gameRepository;
 
-    @GetMapping(value = "/test")
-    public DefaultBody test() {
-        return new DefaultBody("Hi", "testing");
-
-    }
 
     @GetMapping(value =  {" ", "/", "home"})
 

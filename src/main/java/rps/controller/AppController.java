@@ -4,12 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import rps.tokens.Token;
+import rps.model.game.Game;
+import rps.model.utils.AppUtils;
+import rps.model.utils.DefaultBody;
+import rps.model.utils.GameBody;
 import rps.services.GameService;
 import rps.model.gamelogic.Selection;
 import rps.model.player.Player;
 import rps.model.utils.PlayerBody;
+import rps.tokens.Token;
 import rps.tokens.TokenService;
+
+import java.util.UUID;
 
 
 @RestController
@@ -25,25 +31,34 @@ public class AppController {
 
     //  Get token
     @GetMapping(value = "/auth/token")
-    public Token getToken() {
-        return Token.create();
+    public String getToken() {
+        return AppUtils.createNewId();
 
     }
-
 
     // set name
-    @PostMapping(value = "/user/{name}")
-    public PlayerBody setName(@PathVariable("name") String name,
-                               @RequestHeader(value = "token",required = false) String tokenId) {
-        Token token = tokenService.getTokenById(tokenId);
-        System.out.println("token is" + token);
-        return new PlayerBody(gameService.registerPlayerById(token));
+//    @PostMapping(value = "/user/{name}")
+//    public PlayerBody setName(@PathVariable("name") String name,
+//                              @RequestHeader(value = "token",required = false) String tokenId) {
+//        Token token = tokenService.getTokenById(tokenId);
+//        System.out.println("token is" + token);
+//        return new PlayerBody(gameService.registerPlayerById(tokenId));
+//    }
+
+    @GetMapping(value = "/games")
+    public GameBody getGames() {
+        return  new GameBody("jakob", Selection.PAPER, Game.State.ACTIVE,"yazan", Selection.SCISSORS);
     }
 
 
+   /* // set name
+    @PostMapping(value = "/user/name")
+    public PlayerBody setName(@PathVariable("name") String name) {
+        return new PlayerBody(gameService.registerPlayer(name));
+    }
 
     // Start Game
-    /*@GetMapping(value = "/games/start")
+    @GetMapping(value = "/games/start")
     public PlayerBody startGame(@PathVariable("name") String name) {
         return new PlayerBody(gameService.registerPlayer(name));
     }
@@ -58,10 +73,7 @@ public class AppController {
 
     // Game state
 
-    @GetMapping(value = "/games")
-    public PlayerBody getGames(@PathVariable("name") String name) {
-        return new PlayerBody(gameService.registerPlayer(name));
-    }
+
 
     // Game info
 
@@ -77,6 +89,7 @@ public class AppController {
         return new PlayerBody(gameService.registerPlayer(name));
     }
 */
+
 
 
 
