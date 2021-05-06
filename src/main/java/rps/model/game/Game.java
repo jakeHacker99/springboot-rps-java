@@ -25,7 +25,9 @@ public class Game {
     private Selection move;
     private  Selection opponentMove;
     private State state;
+    @OneToOne
     Token owner;
+    @OneToOne
     Token joiner;
     public Game(String id, Token owner) {
         this.id = id;

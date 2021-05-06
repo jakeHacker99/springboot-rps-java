@@ -7,6 +7,7 @@ import rps.model.game.Game;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.UUID;
 @Entity
 @Data
@@ -19,7 +20,10 @@ public class Token {
     String id;
    private String name;
 
+    @OneToOne
    Game ownerGame;
+
+    @OneToOne
    Game joinerGame;
 
 

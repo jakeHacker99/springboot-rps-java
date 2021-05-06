@@ -10,7 +10,7 @@ import rps.model.gamelogic.Selection;
 import rps.model.utils.AppUtils;
 import rps.model.utils.GameDTO;
 import rps.services.GameService;
-import rps.services.PlayActionsService;
+
 import rps.tokens.Token;
 import rps.tokens.TokenService;
 
@@ -20,7 +20,7 @@ import rps.tokens.TokenService;
 public class AppController {
 
     private final GameService gameService;
-    PlayActionsService playActionsService;
+
     TokenService tokenService;
 
 
@@ -50,7 +50,7 @@ public class AppController {
     }
 
     private GameDTO toGameDTO(Game game) {
-        return new GameDTO(game.getId(), game.g, game.getMove(), game., game.getOpponentName());
+        return new GameDTO(game.getId(), game., game.getMove(), game.getState(), game.);
     }
 
     // joinGame
