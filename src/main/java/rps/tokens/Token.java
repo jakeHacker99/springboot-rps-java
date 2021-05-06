@@ -9,6 +9,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Token {
     public static Token create(){
-        return new Token(UUID.randomUUID().toString());}
+        return new Token(UUID.randomUUID().toString(), null, null);}
     String id;
+    private String name;
+    private String gameId;
+
 }

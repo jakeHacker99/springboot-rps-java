@@ -32,47 +32,47 @@ public class Data implements ApplicationListener<ContextRefreshedEvent> {
     private void initData() {
 
         Game game1 = new Game();
-        game1.setGameId("2");
+        game1.setId("2");
         game1.setState(Game.State.ACTIVE);
 
         Game game2 = new Game();
-        game2.setGameId("1");
+        game2.setId("1");
         game2.setState(Game.State.ACTIVE);
         game2.getWinner().toString();
 
 
         Game game3 = new Game();
-        game3.setGameId("4");
+        game3.setId("4");
         game3.setState(Game.State.NONE);
 
         Game game4 = new Game();
-        game4.setGameId("3");
+        game4.setId("3");
         game4.setState(Game.State.NONE);
 
 
         Game game5 = new Game();
-        game5.setGameId("6");
+        game5.setId("6");
         game5.setState(Game.State.ACTIVE);
 
         Game game6 = new Game();
-        game6.setGameId("5");
+        game6.setId("5");
         game6.setState(Game.State.OVER);
 
         Game game7 = new Game();
-        game7.setGameId("8");
+        game7.setId("8");
         game7.setState(Game.State.OVER);
 
         Game game8 = new Game();
-        game8.setGameId("7");
+        game8.setId("7");
         game8.setState(Game.State.NONE);
 
         Game game9 = new Game();
-        game9.setGameId("10");
+        game9.setId("10");
         game9.setState(Game.State.OVER);
         game9.getWinner();
 
         Game game10 = new Game();
-        game10.setGameId("9");
+        game10.setId("9");
         game10.setState(Game.State.OVER);
 
 

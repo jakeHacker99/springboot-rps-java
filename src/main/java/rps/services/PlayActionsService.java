@@ -37,7 +37,7 @@ public class PlayActionsService {
             if (Game.State.OPEN.equals(game.getState())) {
                 changeGameStatus(game, Game.State.ACTIVE);
             }
-            GameRunning playAction = new GameRunning(game.getGameId(), playerId, getMove(move));
+            GameRunning playAction = new GameRunning(game.getId(), playerId, getMove(move));
             changePlayerState(getPlayer(game,playerId), Player.State.PLAYING);
 
             if (game.hasOtherPlayerPlayed()) {

@@ -65,6 +65,21 @@ public class GameService {
         return newGame;
     }
 
+    public Game startNewGame(Token token) {
+
+        Game newGame = new Game(AppUtils.createNewId());
+        games.add(newGame);
+        token.setGameId(newGame.getId());
+
+        newGame.setState(Game.State.OPEN);
+
+
+        GameHistory.getInstance().add(newGame);
+
+        return newGame;
+    }
+
+
 
     public boolean isEnoughPlayersToSpawnGame(PlayersStack playersStack) {
         return playersStack.size() > 1;

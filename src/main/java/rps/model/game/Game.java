@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Game implements Body {
 
     @Id
-    private String gameId;
+    private String id;
 
     @OneToMany
     private List<Player> players;
@@ -28,8 +28,8 @@ public class Game implements Body {
     private List<GameRunning> actions = new ArrayList<>();
 
 
-    public Game(String gameId) {
-        this.gameId = gameId;
+    public Game(String id) {
+        this.id = id;
         this.state = State.NONE;
     }
 
@@ -38,8 +38,6 @@ public class Game implements Body {
         
 
     }
-
-
 
     public void makeWinnerOfGame(Player winner) {
         setState(State.OVER);
@@ -89,16 +87,16 @@ public class Game implements Body {
         return null;
     }
 
-    public String getGameId() {
-        return gameId;
+    public String getId() {
+        return id;
     }
 
     public List<GameRunning> getActions() {
         return actions;
     }
 
-    public void setGameId(String gameId) {
-        this.gameId = gameId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
@@ -134,6 +132,13 @@ public class Game implements Body {
             return Optional.empty();
         }
         return Optional.of(players.get(0).equals(player) ? players.get(1) : players.get(0));
+    }
+
+
+    public Selection getOponnentMove(){
+
+        return null;
+
     }
 
     public void playerReady(Player player) {
@@ -173,7 +178,7 @@ public class Game implements Body {
     }
 
     public enum State {
-        DRAW(4), NONE(3), OPEN(2), ACTIVE(1), OVER(0);
+         NONE(3), OPEN(2), ACTIVE(1), OVER(0);
         private int value;
 
         State(int value) {

@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 
 
 import rps.model.game.Game;
+import rps.model.player.PlayersStack;
 import rps.model.utils.AppUtils;
-import rps.model.utils.DefaultBody;
-import rps.model.utils.GameBody;
+import rps.model.utils.GameDTO;
 import rps.services.GameService;
 import rps.model.gamelogic.Selection;
 import rps.model.player.Player;
@@ -15,13 +15,15 @@ import rps.model.utils.PlayerBody;
 import rps.tokens.Token;
 import rps.tokens.TokenService;
 
-import java.util.UUID;
+import java.util.Stack;
 
 
 @RestController
 public class AppController {
     @Autowired
     private final GameService gameService;
+     GameDTO gameDTO;
+
 
     TokenService tokenService;
 
@@ -45,10 +47,44 @@ public class AppController {
 //        return new PlayerBody(gameService.registerPlayerById(tokenId));
 //    }
 
-    @GetMapping(value = "/games")
-    public GameBody getGames() {
-        return  new GameBody("jakob", Selection.PAPER, Game.State.ACTIVE,"yazan", Selection.SCISSORS);
+
+    // Start Game
+    @GetMapping(value = "/games/start")
+    public GameDTO startGame(@RequestHeader("token") String tokenId) {
+        Token token = tokenService.getTokenById(tokenId);
+
+
+        return toGameDTO(gameService.startNewGame(token));
+
     }
+
+    private GameDTO toGameDTO(Game game) {
+        return new GameDTO(gameDTO.getName(),Selection.PAPER, Game.State.OPEN, "yazan");
+    }
+
+//    @GetMapping(value = "/games")
+//    public GameDTO getGames() {
+//
+//        for (Player player : PlayersStack.getInstance().getPlayers()) {
+//            System.out.println("du kommer inte in hit!!!!!!!!!!!");
+//
+////            return new GameDTO(player.getNickName(), player.getMove(), player.getGameState(), player.getOpponentNickName() );
+//        }
+//        System.out.println(PlayersStack.getInstance());
+//
+//        return  new GameDTO("jakob", java.util.Optional.of(Selection.PAPER), Game.State.ACTIVE,"yazan");
+//        }
+
+//    public Stack<Player> getPlayers(){
+//
+////        ta fram all games
+//
+////        kolla om game är open
+//
+////        lista all open games
+//
+//        return PlayersStack.getInstance().getPlayers();
+//    }
 
 
    /* // set name
@@ -57,11 +93,6 @@ public class AppController {
         return new PlayerBody(gameService.registerPlayer(name));
     }
 
-    // Start Game
-    @GetMapping(value = "/games/start")
-    public PlayerBody startGame(@PathVariable("name") String name) {
-        return new PlayerBody(gameService.registerPlayer(name));
-    }
 
     // joinGame
 
@@ -91,41 +122,41 @@ public class AppController {
 */
 
 
+//
+//    @PostMapping(value = "/register/{name}")
+//    public PlayerBody registerPlayer(@PathVariable("name") String name) {
+//        return new PlayerBody(gameService.registerPlayer(name));
+//    }
+//
+//    @GetMapping(value = "/check/{playerid}")
+//    public PlayerBody checkPlayer(@PathVariable("playerid") Long playerId) {
+//        Player player = gameService.findPlayerById(playerId);
+//        return new PlayerBody(player);
+//    }
+//
+//    @GetMapping(value = "/ready/{playerid}")
+//    public PlayerBody readyForPlaying(@PathVariable("playerid") long playerid) {
+//        Player player = gameService.readyForPlaying(playerid);
+//        return new PlayerBody(player);
+//    }
+//
+//    @GetMapping(value = "/selection/{playerid}/{selection}")
+//    public PlayerBody playing(@PathVariable("playerid") long playerId, @PathVariable("selection") Selection selection) {
+//        Player player = gameService.findPlayerById(playerId);
+//        player.move(selection);
+//        return new PlayerBody(player);
+//    }
+//
+//    @GetMapping(value = "auth/{token}")
+//    public String getToken(@PathVariable("token") String token){
+//
+//        String myRegexp = String.format("-d{20}");
+//
+//        if(token !=null && token.length() == 20 || token.equals( myRegexp )){
+//            return "this token is valid";
+//        }else{
+//            return "not a valid token";
+//        }
+//    }
 
-
-    @PostMapping(value = "/register/{name}")
-    public PlayerBody registerPlayer(@PathVariable("name") String name) {
-        return new PlayerBody(gameService.registerPlayer(name));
-    }
-
-    @GetMapping(value = "/check/{playerid}")
-    public PlayerBody checkPlayer(@PathVariable("playerid") Long playerId) {
-        Player player = gameService.findPlayerById(playerId);
-        return new PlayerBody(player);
-    }
-
-    @GetMapping(value = "/ready/{playerid}")
-    public PlayerBody readyForPlaying(@PathVariable("playerid") long playerid) {
-        Player player = gameService.readyForPlaying(playerid);
-        return new PlayerBody(player);
-    }
-
-    @GetMapping(value = "/selection/{playerid}/{selection}")
-    public PlayerBody playing(@PathVariable("playerid") long playerId, @PathVariable("selection") Selection selection) {
-        Player player = gameService.findPlayerById(playerId);
-        player.move(selection);
-        return new PlayerBody(player);
-    }
-
-    @GetMapping(value = "auth/{token}")
-    public String getToken(@PathVariable("token") String token){
-
-        String myRegexp = String.format("-d{20}");
-
-        if(token !=null && token.length() == 20 || token.equals( myRegexp )){
-            return "this token is valid";
-        }else{
-            return "not a valid token";
-        }
-    }
 }

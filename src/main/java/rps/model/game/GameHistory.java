@@ -28,10 +28,10 @@ public class GameHistory {
     }
 
     public void add(Game newGame) {
-        activeSessions.put(newGame.getGameId(), newGame);
+        activeSessions.put(newGame.getId(), newGame);
     }
 
     public void delete(Game game) {
-        activeSessions.remove(game.getGameId());
+        activeSessions.remove(game.getId());
     }
 }

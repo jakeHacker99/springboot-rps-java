@@ -148,7 +148,7 @@ public class Player implements Body {
         WAIT(0), READY(1), PLAYING(2), WIN(3), LOSE(4);
         private int value;
 
-        private State(int value) {
+         State(int value) {
             this.value = value;
         }
 
@@ -165,7 +165,7 @@ public class Player implements Body {
                 case 4:
                     return "LOSE";
             }
-            return "IDLE";
+            return "DRAW";
         }
     }
 
