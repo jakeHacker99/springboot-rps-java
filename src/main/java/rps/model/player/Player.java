@@ -38,6 +38,8 @@ public class Player implements Body {
         this.playerId = playerId;
     }
 
+    
+
     public Player(String nickname, Token id) {
         this.name= nickname;
         TokenService ts = new TokenService();

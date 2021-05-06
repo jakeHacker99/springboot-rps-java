@@ -1,13 +1,14 @@
 package rps.model.utils;
 
+import lombok.AllArgsConstructor;
 import lombok.Value;
 import rps.model.game.Game;
 import rps.model.gamelogic.Selection;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Value
+@AllArgsConstructor
 public class GameDTO {
 
     private String id;
@@ -25,6 +26,7 @@ public class GameDTO {
         this.opponentName = opponentName;
 //        this.opponentMove = opponentMove;
     }
+
 
     public String createGameId() {
         return UUID.randomUUID().toString();

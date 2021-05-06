@@ -5,17 +5,13 @@ import org.springframework.web.bind.annotation.*;
 
 
 import rps.model.game.Game;
-import rps.model.player.PlayersStack;
+import rps.model.gamelogic.Selection;
 import rps.model.utils.AppUtils;
 import rps.model.utils.GameDTO;
 import rps.services.GameService;
-import rps.model.gamelogic.Selection;
-import rps.model.player.Player;
-import rps.model.utils.PlayerBody;
+import rps.services.PlayActionsService;
 import rps.tokens.Token;
 import rps.tokens.TokenService;
-
-import java.util.Stack;
 
 
 @RestController
@@ -23,6 +19,7 @@ public class AppController {
     @Autowired
     private final GameService gameService;
      GameDTO gameDTO;
+     PlayActionsService playActionsService;
 
 
     TokenService tokenService;
@@ -52,15 +49,34 @@ public class AppController {
     @GetMapping(value = "/games/start")
     public GameDTO startGame(@RequestHeader("token") String tokenId) {
         Token token = tokenService.getTokenById(tokenId);
-
-
         return toGameDTO(gameService.startNewGame(token));
 
     }
 
     private GameDTO toGameDTO(Game game) {
-        return new GameDTO(gameDTO.getName(),Selection.PAPER, Game.State.OPEN, "yazan");
+        return new GameDTO(gameDTO.getId(),gameDTO.getName(),gameDTO.getMove(),gameDTO.getGame(),gameDTO.getOpponentName());
     }
+
+    // joinGame
+
+    // joinGame
+
+    @GetMapping(value = "/games/join/{gameId}")
+    public GameDTO joinGame( @PathVariable("gameId") String gameId,
+                             @RequestHeader("token") String tokenId) {
+        return new GameDTO(gameService.joinGame(tokenId));
+    }
+
+    // get move
+    @GetMapping(value = "/games/move/{sign}")
+    public GameDTO makeMove(@PathVariable("sign") Selection move,
+                            @RequestHeader("token") String tokenId) {
+        return new GameDTO(playActionsService.getMove(gameDTO.getMove()));
+    }
+
+
+
+
 
 //    @GetMapping(value = "/games")
 //    public GameDTO getGames() {
@@ -86,6 +102,12 @@ public class AppController {
 //        return PlayersStack.getInstance().getPlayers();
 //    }
 
+/*    @GetMapping(value = "/games/start")
+    public GameBody startGame( @RequestHeader(value = "token",required = false) String tokenId) {
+        Token token = tokenService.getTokenById(tokenId);
+        return new GameBody(gameService.(token));
+    }*/
+
 
    /* // set name
     @PostMapping(value = "/user/name")
@@ -93,13 +115,7 @@ public class AppController {
         return new PlayerBody(gameService.registerPlayer(name));
     }
 
-
-    // joinGame
-
-    @GetMapping(value = "/games/start")
-    public PlayerBody joinGame(@PathVariable("name") String name) {
-        return new PlayerBody(gameService.registerPlayer(name));
-    }
+ /*
 
 
     // Game state

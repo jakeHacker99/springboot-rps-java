@@ -5,6 +5,8 @@ import lombok.Data;
 import rps.model.game.Game;
 import rps.model.player.Player;
 
+import java.util.UUID;
+
 @Data
 public class PlayerBody {
 
