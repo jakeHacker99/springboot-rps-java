@@ -1,16 +1,13 @@
 package rps.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 import rps.model.game.Game;
-import rps.model.gamelogic.Selection;
 import rps.model.utils.AppUtils;
 import rps.model.utils.GameDTO;
 import rps.services.GameService;
-
 import rps.tokens.Token;
 import rps.tokens.TokenService;
 
@@ -20,7 +17,6 @@ import rps.tokens.TokenService;
 public class AppController {
 
     private final GameService gameService;
-
     TokenService tokenService;
 
 
@@ -50,7 +46,7 @@ public class AppController {
     }
 
     private GameDTO toGameDTO(Game game) {
-        return new GameDTO(game.getId(), game., game.getMove(), game.getState(), game.);
+        return new GameDTO(game.getId(), game.getOwner().getName(), game.getMove(), game.getState(), game.getJoiner().getName(), game.getOpponentMove());
     }
 
     // joinGame

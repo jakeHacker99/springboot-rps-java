@@ -1,14 +1,16 @@
 package rps.model.utils;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 import rps.model.game.Game;
 import rps.model.gamelogic.Selection;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Value
-@AllArgsConstructor
 public class GameDTO {
 
     private String id;
@@ -16,17 +18,16 @@ public class GameDTO {
     private Selection move;
     private Game.State game;
     private String opponentName;
-//    private Selection opponentMove;
+   private Selection opponentMove;
 
-    public GameDTO(String name, Selection move, Game.State game, String opponentName) {
-        this.id =createGameId();
+    public GameDTO(String id, String name, Selection move, Game.State game, String opponentName, Selection opponentMove) {
+        this.id = id;
         this.name = name;
         this.move = move;
         this.game = game;
         this.opponentName = opponentName;
-//        this.opponentMove = opponentMove;
+        this.opponentMove = opponentMove;
     }
-
 
     public String createGameId() {
         return UUID.randomUUID().toString();

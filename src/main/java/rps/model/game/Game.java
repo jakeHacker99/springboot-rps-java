@@ -7,10 +7,6 @@ import java.util.Optional;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import rps.model.utils.Body;
-import rps.model.player.Player;
-import rps.model.gamelogic.GameRunning;
-import rps.model.gamelogic.RulesForGame;
 import rps.model.gamelogic.Selection;
 import rps.tokens.Token;
 

@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import rps.model.utils.Body;
 import rps.model.game.Game;
 import rps.model.game.GameHistory;
-import rps.model.player.Player;
 import rps.model.utils.AppUtils;
-import rps.model.player.PlayersStack;
 import rps.model.utils.GameDTO;
 import rps.repositories.GameRepository;
 import rps.repositories.TokenRepository;
@@ -29,18 +27,9 @@ public class GameService {
 
     public Game startNewGame(Token token) {
 
-        Game newGame = new Game(AppUtils.createNewId(),token);
+        Game newGame = new Game(AppUtils.createNewId(), token);
         token.setOwnerGame(newGame);
         gameRepository.save(newGame);
         return newGame;
     }
-
-
-
-   /* public GameDTO joinGame(String tokenId) {
-
-    }*/
-
-  /*  public GameDTO joinGame(String tokenId) {
-    }*/
 }

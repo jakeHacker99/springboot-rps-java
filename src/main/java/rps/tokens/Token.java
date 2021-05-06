@@ -20,11 +20,11 @@ public class Token {
     String id;
    private String name;
 
-    @OneToOne
+   @OneToOne
    Game ownerGame;
-
     @OneToOne
-   Game joinerGame;
+
+    Game joinerGame;
 
 
 }
