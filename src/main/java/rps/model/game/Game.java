@@ -17,13 +17,20 @@ import javax.persistence.*;
 public class Game {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private String id;
     private Selection move;
     private  Selection opponentMove;
     private State state;
     @OneToOne
+    @JoinColumn()
+
+
     Token owner;
     @OneToOne
+    @JoinColumn()
+
     Token joiner;
     public Game(String id, Token owner) {
         this.id = id;

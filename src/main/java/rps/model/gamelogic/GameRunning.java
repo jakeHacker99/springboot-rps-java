@@ -4,10 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Entity
 @Data
 public class GameRunning {
-    @Id
     private String game;
     private Long player;
     private Selection selection;
