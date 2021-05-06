@@ -5,40 +5,37 @@ import java.util.List;
 import java.util.Optional;
 
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import rps.model.utils.Body;
 import rps.model.player.Player;
 import rps.model.gamelogic.GameRunning;
 import rps.model.gamelogic.RulesForGame;
 import rps.model.gamelogic.Selection;
+import rps.tokens.Token;
 
 import javax.persistence.*;
-
+@Data
 @Entity
-public class Game implements Body {
+@NoArgsConstructor
+public class Game {
 
     @Id
     private String id;
-
-    @OneToMany
-    private List<Player> players;
+    private Selection move;
+    private  Selection opponentMove;
     private State state;
-    @OneToOne
-    private Player winner;
-    @OneToMany
-    private List<GameRunning> actions = new ArrayList<>();
-
-
-    public Game(String id) {
+    Token owner;
+    Token joiner;
+    public Game(String id, Token owner) {
         this.id = id;
-        this.state = State.NONE;
-    }
-
-
-    public Game() {
-        
+        this.owner = owner;
+        this.state = State.OPEN;
 
     }
 
+
+/*
     public void makeWinnerOfGame(Player winner) {
         setState(State.OVER);
         this.winner = winner;
@@ -51,8 +48,9 @@ public class Game implements Body {
     public boolean hasOtherPlayerPlayed() {
         return actions.size() == 1;
     }
+*/
 
-    public boolean hasAReadyPlayer() {
+    /*public boolean hasAReadyPlayer() {
         for (Player player : this.getPlayers()) {
             if (Player.State.READY.equals(player.getState())) {
                 return true;
@@ -175,7 +173,7 @@ public class Game implements Body {
 
     public Optional<Player> getWinner() {
         return Optional.ofNullable(winner);
-    }
+    }*/
 
     public enum State {
          NONE(3), OPEN(2), ACTIVE(1), OVER(0);

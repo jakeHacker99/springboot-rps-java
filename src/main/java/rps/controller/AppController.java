@@ -1,5 +1,6 @@
 package rps.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,18 +16,13 @@ import rps.tokens.TokenService;
 
 
 @RestController
+@AllArgsConstructor
 public class AppController {
-    @Autowired
+
     private final GameService gameService;
-     GameDTO gameDTO;
-     PlayActionsService playActionsService;
-
-
+    PlayActionsService playActionsService;
     TokenService tokenService;
 
-    public AppController(GameService gameService) {
-        this.gameService = gameService;
-    }
 
     //  Get token
     @GetMapping(value = "/auth/token")
@@ -54,14 +50,14 @@ public class AppController {
     }
 
     private GameDTO toGameDTO(Game game) {
-        return new GameDTO(gameDTO.getId(),gameDTO.getName(),gameDTO.getMove(),gameDTO.getGame(),gameDTO.getOpponentName());
+        return new GameDTO(game.getId(), game.g, game.getMove(), game., game.getOpponentName());
     }
 
     // joinGame
 
     // joinGame
 
-    @GetMapping(value = "/games/join/{gameId}")
+  /*  @GetMapping(value = "/games/join/{gameId}")
     public GameDTO joinGame( @PathVariable("gameId") String gameId,
                              @RequestHeader("token") String tokenId) {
         return new GameDTO(gameService.joinGame(tokenId));
@@ -73,9 +69,7 @@ public class AppController {
                             @RequestHeader("token") String tokenId) {
         return new GameDTO(playActionsService.getMove(gameDTO.getMove()));
     }
-
-
-
+*/
 
 
 //    @GetMapping(value = "/games")

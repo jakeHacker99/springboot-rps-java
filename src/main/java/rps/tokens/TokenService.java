@@ -1,6 +1,7 @@
 package rps.tokens;
 
 import org.springframework.stereotype.Service;
+import rps.repositories.TokenRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,16 +9,17 @@ import java.util.Map;
 @Service
 public class TokenService {
 
-    Map<String, Token> tokens = new HashMap<>();
+    TokenRepository tokenRepository;
+
 
     public Token creatToken() {
         Token token = Token.create();
-        tokens.put(token.getId(),token);
+        tokenRepository.save(token);
         return token;
     }
 
     public Token getTokenById(String tokenId){
-        return tokens.get(tokenId);
+        return tokenRepository.getOne(tokenId);
 
     }
 }
