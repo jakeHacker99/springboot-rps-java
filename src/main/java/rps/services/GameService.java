@@ -1,11 +1,7 @@
 package rps.services;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
+import antlr.collections.impl.LList;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +29,13 @@ public class GameService {
         return newGame;
     }
 
+//    public List<Game> joinGame(Token Token) {
+////
+////        List getAllOpenGames= gameRepository.findAll();
+////
+////        return  getAllOpenGames;
+//    }
+
 
     public Game joinGame(String gameId,Token token) {
         Game gameInAction = gameRepository.getOne(gameId);
@@ -44,6 +47,14 @@ public class GameService {
     }
 
 
+    public Game getState(String gameId, Token token) {
+        Game gameInAction = gameRepository.getOne(gameId);
+        gameInAction.setJoiner(token);
 
+        gameInAction.getState();
 
+        gameRepository.save(gameInAction);
+
+        return gameInAction;
+    }
 }

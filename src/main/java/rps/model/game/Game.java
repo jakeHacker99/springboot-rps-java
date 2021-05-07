@@ -13,7 +13,7 @@ import rps.tokens.Token;
 import javax.persistence.*;
 @Data
 @Entity
-@Table
+@Table(name = "ourGame")
 @NoArgsConstructor
 public class Game {
 
@@ -29,12 +29,16 @@ public class Game {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
     Token joiner;
+
+
+
     public Game(String id, Token owner) {
         this.id = id;
         this.owner = owner;
         this.state = State.OPEN;
 
     }
+
 
 
 

@@ -9,6 +9,7 @@ import rps.model.game.Game;
 import rps.model.gamelogic.Selection;
 import rps.model.utils.AppUtils;
 import rps.model.utils.GameDTO;
+import rps.repositories.TokenRepository;
 import rps.services.GameService;
 
 import rps.tokens.Token;
@@ -54,19 +55,35 @@ public class AppController {
                 game.getOwner().getName(),
                 game.getMove(),
                 game.getState(),
-                game.getJoiner()!=null?game.getJoiner().getName(): "",
+                game.getJoiner() != null ? game.getJoiner().getName() : "",
                 game.getOpponentMove());
     }
-    // joinGame
 
-    // joinGame
 
     @GetMapping(value = "/games/join/{gameId}")
-    public GameDTO joinGame( @PathVariable("gameId") String gameId,
-                             @RequestHeader("token") String tokenId) {
+    public GameDTO joinGame(@PathVariable("gameId") String gameId,
+                            @RequestHeader("token") String tokenId) {
         Token token = tokenService.getTokenById(tokenId);
-        return toGameDTO(gameService.joinGame(gameId,token));
+        return toGameDTO(gameService.joinGame(gameId, token));
     }
+
+    @GetMapping(value = "/games/status")
+    public GameDTO getState( @RequestHeader("gameId") String gameId,
+                                   @RequestHeader("token") String tokenId) {
+        Token token = tokenService.getTokenById(tokenId);
+        return toGameDTO(gameService.getState(gameId, token ));
+
+
+
+    }
+
+
+    // joinGame
+
+    // joinGame
+
+
+   /*
 
     // get move
    /* @GetMapping(value = "/games/move/{sign}")
