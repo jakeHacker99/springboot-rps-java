@@ -13,24 +13,21 @@ import rps.tokens.Token;
 import javax.persistence.*;
 @Data
 @Entity
+@Table(name = "ourGame")
 @NoArgsConstructor
 public class Game {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column
     private String id;
+    private String name;
     private Selection move;
     private  Selection opponentMove;
     private State state;
-    @OneToOne
-    @JoinColumn()
-
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     Token owner;
-    @OneToOne
-    @JoinColumn()
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn
     Token joiner;
     public Game(String id, Token owner) {
         this.id = id;
@@ -38,6 +35,8 @@ public class Game {
         this.state = State.OPEN;
 
     }
+
+
 
 
 /*

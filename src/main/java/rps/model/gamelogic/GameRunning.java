@@ -4,8 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
 @Data
 public class GameRunning {
+
     private String game;
     private Long player;
     private Selection selection;

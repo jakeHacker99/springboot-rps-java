@@ -1,13 +1,16 @@
 package rps.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 import rps.model.game.Game;
+import rps.model.gamelogic.Selection;
 import rps.model.utils.AppUtils;
 import rps.model.utils.GameDTO;
 import rps.services.GameService;
+
 import rps.tokens.Token;
 import rps.tokens.TokenService;
 
@@ -17,6 +20,7 @@ import rps.tokens.TokenService;
 public class AppController {
 
     private final GameService gameService;
+
     TokenService tokenService;
 
 
@@ -46,14 +50,18 @@ public class AppController {
     }
 
     private GameDTO toGameDTO(Game game) {
-        return new GameDTO(game.getId(), game.getOwner().getName(), game.getMove(), game.getState(), game.getJoiner().getName(), game.getOpponentMove());
+        return new GameDTO(game.getId(),
+                game.getOwner().getName(),
+                game.getMove(),
+                game.getState(),
+                game.getJoiner()!=null?game.getJoiner().getName(): "",
+                game.getOpponentMove());
     }
-
     // joinGame
 
     // joinGame
 
-  /*  @GetMapping(value = "/games/join/{gameId}")
+   /* @GetMapping(value = "/games/join/{gameId}")
     public GameDTO joinGame( @PathVariable("gameId") String gameId,
                              @RequestHeader("token") String tokenId) {
         return new GameDTO(gameService.joinGame(tokenId));
@@ -63,10 +71,9 @@ public class AppController {
     @GetMapping(value = "/games/move/{sign}")
     public GameDTO makeMove(@PathVariable("sign") Selection move,
                             @RequestHeader("token") String tokenId) {
-        return new GameDTO(playActionsService.getMove(gameDTO.getMove()));
+        return new GameDTO(gameService.getMove());
     }
 */
-
 
 //    @GetMapping(value = "/games")
 //    public GameDTO getGames() {

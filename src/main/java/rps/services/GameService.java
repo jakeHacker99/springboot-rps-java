@@ -32,4 +32,13 @@ public class GameService {
         gameRepository.save(newGame);
         return newGame;
     }
+
+
+   /* public Game joinGame(String tokenId) {
+        Game gameInAction = new Game();
+    }*/
+
+
+
+
 }

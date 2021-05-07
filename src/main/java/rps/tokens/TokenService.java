@@ -1,5 +1,6 @@
 package rps.tokens;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import rps.repositories.TokenRepository;
 
@@ -7,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
+@AllArgsConstructor
 public class TokenService {
 
     TokenRepository tokenRepository;
