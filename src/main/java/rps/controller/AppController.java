@@ -69,11 +69,11 @@ public class AppController {
     }
 
     // get move
-    @GetMapping(value = "/games/move/{sign}")
+   /* @GetMapping(value = "/games/move/{sign}")
     public GameDTO makeMove(@PathVariable("sign") Selection move,
                             @RequestHeader("token") String tokenId) {
         return new GameDTO(gameService.getMove());
-    }
+    }*/
 //    @GetMapping(value = "/games")
 //    public GameDTO getGames() {
 //
