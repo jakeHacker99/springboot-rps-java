@@ -61,10 +61,11 @@ public class AppController {
 
     // joinGame
 
-   /* @GetMapping(value = "/games/join/{gameId}")
+    @GetMapping(value = "/games/join/{gameId}")
     public GameDTO joinGame( @PathVariable("gameId") String gameId,
                              @RequestHeader("token") String tokenId) {
-        return new GameDTO(gameService.joinGame(tokenId));
+        Token token = tokenService.getTokenById(tokenId);
+        return toGameDTO(gameService.joinGame(gameId,token));
     }
 
     // get move
@@ -73,8 +74,6 @@ public class AppController {
                             @RequestHeader("token") String tokenId) {
         return new GameDTO(gameService.getMove());
     }
-*/
-
 //    @GetMapping(value = "/games")
 //    public GameDTO getGames() {
 //

@@ -8,7 +8,7 @@ import rps.model.game.Game;
 import javax.persistence.*;
 import java.util.UUID;
 @Entity
-@Table(name = "Token1")
+@Table
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

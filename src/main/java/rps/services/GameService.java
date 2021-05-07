@@ -34,9 +34,14 @@ public class GameService {
     }
 
 
-   /* public Game joinGame(String tokenId) {
-        Game gameInAction = new Game();
-    }*/
+    public Game joinGame(String gameId,Token token) {
+        Game gameInAction = gameRepository.getOne(gameId);
+        gameInAction.setJoiner(token);
+        gameInAction.setState(Game.State.ACTIVE);
+
+        gameRepository.save(gameInAction);
+        return gameInAction;
+    }
 
 
 

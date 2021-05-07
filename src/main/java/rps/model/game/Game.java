@@ -13,7 +13,7 @@ import rps.tokens.Token;
 import javax.persistence.*;
 @Data
 @Entity
-@Table(name = "ourGame")
+@Table
 @NoArgsConstructor
 public class Game {
 
