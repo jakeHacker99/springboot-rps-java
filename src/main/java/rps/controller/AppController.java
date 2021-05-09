@@ -71,10 +71,13 @@ public class AppController {
     public GameDTO getState( @RequestHeader("gameId") String gameId,
                                    @RequestHeader("token") String tokenId) {
         Token token = tokenService.getTokenById(tokenId);
-        return toGameDTO(gameService.getState(gameId, token ));
+        return toGameDTO(gameService.getState(gameId ));
+    }
 
-
-
+    @GetMapping(value = "/games/move/{sign}")
+    public GameDTO makeMove(@PathVariable("sign") Selection move,
+                            @RequestHeader("token") String tokenId) {
+        return  toGameDTO(gameService.makeMove(move,tokenId));
     }
 
 

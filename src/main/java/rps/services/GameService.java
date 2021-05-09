@@ -5,11 +5,10 @@ import antlr.collections.impl.LList;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import rps.model.gamelogic.Selection;
 import rps.model.utils.Body;
 import rps.model.game.Game;
-import rps.model.game.GameHistory;
 import rps.model.utils.AppUtils;
-import rps.model.utils.GameDTO;
 import rps.repositories.GameRepository;
 import rps.repositories.TokenRepository;
 import rps.tokens.Token;
@@ -47,14 +46,24 @@ public class GameService {
     }
 
 
-    public Game getState(String gameId, Token token) {
+    public Game getState(String gameId) {
         Game gameInAction = gameRepository.getOne(gameId);
-        gameInAction.setJoiner(token);
 
         gameInAction.getState();
 
         gameRepository.save(gameInAction);
 
         return gameInAction;
+    }
+
+    public Game makeMove(Selection move, String token) {
+        Game moveInAction = gameRepository.getOne(token);
+
+        if (moveInAction.getMove() == null) {
+            moveInAction.setMove(move);
+        }
+        gameRepository.save(moveInAction);
+
+        return moveInAction;
     }
 }
