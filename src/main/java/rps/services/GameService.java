@@ -66,4 +66,15 @@ public class GameService {
 
         return moveInAction;
     }
+
+    public Game setName(String name, String token) {
+        Game setName = gameRepository.getOne(token);
+        if (setName == null) {
+            setName.setName(name);
+        }
+
+        gameRepository.save(setName);
+        return setName;
+
+    }
 }

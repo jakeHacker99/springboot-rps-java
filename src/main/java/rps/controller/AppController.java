@@ -80,10 +80,14 @@ public class AppController {
         return  toGameDTO(gameService.makeMove(move,tokenId));
     }
 
+    @GetMapping(value = "/user/{name} ")
+    public GameDTO setName(@PathVariable("name") String name,
+                            @RequestHeader("token") String tokenId) {
+        return  toGameDTO(gameService.setName(name, tokenId));
+    }
 
-    // joinGame
 
-    // joinGame
+
 
 
    /*
