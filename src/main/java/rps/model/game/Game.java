@@ -1,5 +1,6 @@
 package rps.model.game;
 
+import java.beans.JavaBean;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,6 @@ public class Game {
         this.id = id;
         this.owner = owner;
         this.state = State.OPEN;
-
     }
 
 

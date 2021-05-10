@@ -3,6 +3,9 @@ import java.util.*;
 
 import antlr.collections.impl.LList;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.MethodOverride;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import rps.model.gamelogic.Selection;
@@ -48,7 +51,32 @@ public class GameService {
 
 
     public Game makeMove(Selection move, String tokenId) {
+
         Token token = tokenRepository.getOne(tokenId);
+
+        Game getGameByOwnerId =  gameRepository.getOne(token.getOwnerGame().getId());
+
+        if(token.getJoinerGame() == null){
+            token.setJoinerGame(getGameByOwnerId);
+            token.getJoinerGame().setId(token.getOwnerGame().getId());
+
+            Game getJoinerId =  gameRepository.getOne(token.getJoinerGame().getId());
+
+            if (getJoinerId.getMove() == null) {
+                getJoinerId.setMove(move);
+            }
+            gameRepository.save(getJoinerId);
+            tokenRepository.save(token);
+            return getJoinerId;
+        }
+
+        if (getGameByOwnerId.getMove() == null) {
+            getGameByOwnerId.setMove(move);
+        }
+        if (getGameByOwnerId.getMove() == null) {
+            getGameByOwnerId.setMove(move);
+        }
+
         if (token.getJoinerGame() != null) {
             token.getJoinerGame().setOpponentMove(move);
         }
@@ -56,16 +84,16 @@ public class GameService {
             token.getOwnerGame().setMove(move);
         }
 
-        //status med ,
-        Game moveInAction = token. gameRepository.getOne(token);
 
 
-        if (moveInAction.getMove() == null) {
-            moveInAction.setMove(move);
-        }
-        gameRepository.save(moveInAction);
+        //get winner / loser
 
-        return moveInAction;
+
+
+        tokenRepository.save(token);
+        gameRepository.save(getGameByOwnerId);
+
+        return getGameByOwnerId;
     }
 
 
