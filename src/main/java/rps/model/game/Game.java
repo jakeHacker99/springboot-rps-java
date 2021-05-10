@@ -19,7 +19,6 @@ public class Game {
 
     @Id
     private String id;
-    private String name;
     private Selection move;
     private  Selection opponentMove;
     private State state;

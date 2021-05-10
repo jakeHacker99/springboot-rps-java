@@ -74,15 +74,15 @@ public class AppController {
         return  toGameDTO(gameService.makeMove(move,tokenId));
     }
 
-    @PostMapping(value = "/user/name")
+   /* @PostMapping(value = "/user/name")
     public GameDTO setName(@RequestBody String name,
                           @RequestHeader("token") String tokenId)  {
         return toGameDTO(gameService.getName(name,tokenId)) ;
     }
-
+*/
     @GetMapping(value = "/games/status")
     public GameDTO getState(@RequestHeader("token") String tokenId) {
-        return toGameDTO(gameService.getState(tokenId ));
+        return toGameDTO(gameService.getState(tokenId));
     }
 
 
