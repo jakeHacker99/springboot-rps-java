@@ -46,15 +46,6 @@ public class GameService {
     }
 
 
-    public Game getState(String gameId) {
-        Game gameInAction = gameRepository.getOne(gameId);
-
-        gameInAction.getState();
-
-        gameRepository.save(gameInAction);
-
-        return gameInAction;
-    }
 
     public Game makeMove(Selection move, String token) {
         Game moveInAction = gameRepository.getOne(token);
@@ -68,4 +59,20 @@ public class GameService {
     }
 
 
+    public Game getName(String name, String tokenId) {
+        Game enterName = gameRepository.getOne(tokenId);
+        enterName.setName(name);
+        gameRepository.save(enterName);
+        return enterName;
+    }
+
+    public Game getState(String gameId) {
+        Game gameInAction = gameRepository.getOne(gameId);
+
+        gameInAction.getState();
+
+        gameRepository.save(gameInAction);
+
+        return gameInAction;
+    }
 }

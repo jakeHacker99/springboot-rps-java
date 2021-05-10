@@ -1,11 +1,18 @@
 package rps.model.gamelogic;
 
+import lombok.Data;
+
+
 public enum Selection{
     ROCK(0),
     PAPER(1),
     SCISSORS(2),
     Draw(3);
 
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 
     private int value;
 

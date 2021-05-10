@@ -67,10 +67,6 @@ public class AppController {
         return toGameDTO(gameService.joinGame(gameId, token));
     }
 
-    @GetMapping(value = "/games/status")
-    public GameDTO getState(@RequestHeader("token") String tokenId) {
-        return toGameDTO(gameService.getState(tokenId ));
-    }
 
     @GetMapping(value = "/games/move/{sign}")
     public GameDTO makeMove(@PathVariable("sign") Selection move,
@@ -79,8 +75,14 @@ public class AppController {
     }
 
     @PostMapping(value = "/user/name")
-    public String setName(@RequestBody String name)  {
-        return  name ;
+    public GameDTO setName(@RequestBody String name,
+                          @RequestHeader("token") String tokenId)  {
+        return toGameDTO(gameService.getName(name,tokenId)) ;
+    }
+
+    @GetMapping(value = "/games/status")
+    public GameDTO getState(@RequestHeader("token") String tokenId) {
+        return toGameDTO(gameService.getState(tokenId ));
     }
 
 
