@@ -3,6 +3,7 @@ import java.util.*;
 
 import antlr.collections.impl.LList;
 import lombok.AllArgsConstructor;
+import org.hibernate.engine.query.spi.ParamLocationRecognizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.MethodOverride;
 import org.springframework.context.annotation.Bean;
@@ -53,48 +54,40 @@ public class GameService {
     public Game makeMove(Selection move, String tokenId) {
 
         Token token = tokenRepository.getOne(tokenId);
+        Game ownerGame = token.getOwnerGame();
 
-        Game getGameByOwnerId =  gameRepository.getOne(token.getOwnerGame().getId());
-
-        if(token.getJoinerGame() == null){
-            token.setJoinerGame(getGameByOwnerId);
-            token.getJoinerGame().setId(token.getOwnerGame().getId());
-
-            Game getJoinerId =  gameRepository.getOne(token.getJoinerGame().getId());
-
-            if (getJoinerId.getMove() == null) {
-                getJoinerId.setMove(move);
-            }
-            gameRepository.save(getJoinerId);
-            tokenRepository.save(token);
-            return getJoinerId;
+        if (ownerGame != null) {
+            ownerGame.setMove(move);
+            checkWinnerOfGame(ownerGame);
+            gameRepository.save(ownerGame);
+            return ownerGame;
         }
 
-        if (getGameByOwnerId.getMove() == null) {
-            getGameByOwnerId.setMove(move);
+        Game joinerGame = token.getJoinerGame();
+        if (joinerGame != null) {
+            joinerGame.setOpponentMove(move);
+            checkWinnerOfGame(joinerGame);
+            gameRepository.save(joinerGame);
+            return joinerGame;
         }
-        if (getGameByOwnerId.getMove() == null) {
-            getGameByOwnerId.setMove(move);
-        }
-
-        if (token.getJoinerGame() != null) {
-            token.getJoinerGame().setOpponentMove(move);
-        }
-        if (token.getOwnerGame() != null) {
-            token.getOwnerGame().setMove(move);
-        }
-
-
 
         //get winner / loser
 
 
+        return null;
 
-        tokenRepository.save(token);
-        gameRepository.save(getGameByOwnerId);
 
-        return getGameByOwnerId;
+
+
+
+
+
     }
+
+    private void checkWinnerOfGame(Game game) {
+
+    }
+
 
 
   /*  public Game getName(String name, String tokenId) {
