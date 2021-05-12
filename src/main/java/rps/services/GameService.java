@@ -1,12 +1,6 @@
 package rps.services;
-import java.util.*;
 
-import antlr.collections.impl.LList;
 import lombok.AllArgsConstructor;
-import org.hibernate.engine.query.spi.ParamLocationRecognizer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.MethodOverride;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import rps.model.gamelogic.Selection;
@@ -32,19 +26,13 @@ public class GameService {
         return newGame;
     }
 
-//    public List<Game> joinGame(Token Token) {
-////
-////        List getAllOpenGames= gameRepository.findAll();
-////
-////        return  getAllOpenGames;
-//    }
 
 
     public Game joinGame(String gameId,Token token) {
         Game gameInAction = gameRepository.getOne(gameId);
         gameInAction.setJoiner(token);
         gameInAction.setState(Game.State.ACTIVE);
-
+        token.setJoinerGame(gameInAction);
         gameRepository.save(gameInAction);
         return gameInAction;
     }
@@ -58,13 +46,15 @@ public class GameService {
 
         if (ownerGame != null) {
             ownerGame.setMove(move);
+
             checkWinnerOfGame(ownerGame);
             gameRepository.save(ownerGame);
             return ownerGame;
         }
 
         Game joinerGame = token.getJoinerGame();
-        if (joinerGame != null) {
+        if (joinerGame == null) {
+            ownerGame.setId(ownerGame.getId());
             joinerGame.setOpponentMove(move);
             checkWinnerOfGame(joinerGame);
             gameRepository.save(joinerGame);
@@ -73,15 +63,7 @@ public class GameService {
 
         //get winner / loser
 
-
         return null;
-
-
-
-
-
-
-
     }
 
     private void checkWinnerOfGame(Game game) {
