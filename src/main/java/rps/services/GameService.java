@@ -1,12 +1,6 @@
 package rps.services;
-import java.util.*;
 
-import antlr.collections.impl.LList;
 import lombok.AllArgsConstructor;
-import org.hibernate.engine.query.spi.ParamLocationRecognizer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.support.MethodOverride;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import rps.model.gamelogic.Selection;
@@ -16,6 +10,7 @@ import rps.model.utils.AppUtils;
 import rps.repositories.GameRepository;
 import rps.repositories.TokenRepository;
 import rps.tokens.Token;
+
 
 @Service
 @AllArgsConstructor
@@ -32,18 +27,15 @@ public class GameService {
         return newGame;
     }
 
-//    public List<Game> joinGame(Token Token) {
-////
-////        List getAllOpenGames= gameRepository.findAll();
-////
-////        return  getAllOpenGames;
-//    }
 
 
     public Game joinGame(String gameId,Token token) {
         Game gameInAction = gameRepository.getOne(gameId);
         gameInAction.setJoiner(token);
         gameInAction.setState(Game.State.ACTIVE);
+
+        token.setJoinerGame(gameInAction);
+        token.setOwnerGame(gameInAction);
 
         gameRepository.save(gameInAction);
         return gameInAction;
@@ -56,32 +48,27 @@ public class GameService {
         Token token = tokenRepository.getOne(tokenId);
         Game ownerGame = token.getOwnerGame();
 
-        if (ownerGame != null) {
+        if (ownerGame != null && ownerGame.getMove()==null) {
             ownerGame.setMove(move);
             checkWinnerOfGame(ownerGame);
+            tokenRepository.save(token);
             gameRepository.save(ownerGame);
             return ownerGame;
         }
 
         Game joinerGame = token.getJoinerGame();
-        if (joinerGame != null) {
-            joinerGame.setOpponentMove(move);
+        if (joinerGame.getJoiner().getId() != null) {
+            ownerGame.setOpponentMove(move);
             checkWinnerOfGame(joinerGame);
+            tokenRepository.save(token);
             gameRepository.save(joinerGame);
+            gameRepository.save(ownerGame);
             return joinerGame;
         }
 
         //get winner / loser
 
-
         return null;
-
-
-
-
-
-
-
     }
 
     private void checkWinnerOfGame(Game game) {
