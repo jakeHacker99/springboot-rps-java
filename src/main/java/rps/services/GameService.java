@@ -9,6 +9,7 @@ import org.springframework.beans.factory.support.MethodOverride;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
+import rps.model.gamelogic.RulesForGame;
 import rps.model.gamelogic.Selection;
 import rps.model.utils.Body;
 import rps.model.game.Game;
@@ -45,6 +46,10 @@ public class GameService {
         gameInAction.setJoiner(token);
         gameInAction.setState(Game.State.ACTIVE);
 
+        token.setJoinerGame(gameInAction);
+//        token.setOwnerGame(gameInAction);
+
+
         gameRepository.save(gameInAction);
         return gameInAction;
     }
@@ -58,6 +63,7 @@ public class GameService {
 
         if (ownerGame != null) {
             ownerGame.setMove(move);
+            System.out.println("owner move is\t"+ move);
             checkWinnerOfGame(ownerGame);
             gameRepository.save(ownerGame);
             return ownerGame;
@@ -66,27 +72,32 @@ public class GameService {
         Game joinerGame = token.getJoinerGame();
         if (joinerGame != null) {
             joinerGame.setOpponentMove(move);
+            System.out.println("joiner move is\t"+ move);
             checkWinnerOfGame(joinerGame);
             gameRepository.save(joinerGame);
             return joinerGame;
         }
 
         //get winner / loser
-
-
         return null;
-
-
-
-
-
 
 
     }
 
     private void checkWinnerOfGame(Game game) {
+       /* Game checkResult = new Game();
+
+        if (checkResult.getMove() == checkResult.getOpponentMove() ) {
+            return ;
+        }
+        if (checkResult.getMove() == Selection.ROCK && checkResult.getOpponentMove() == Selection.SCISSORS) {
+
+        }
+        RulesForGame checkResult = new RulesForGame();
+        checkResult.result(game.getMove(),game.getOpponentMove());*/
 
     }
+
 
 
 
