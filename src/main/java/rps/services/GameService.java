@@ -28,8 +28,7 @@ public class GameService {
     }
 
 
-
-    public Game joinGame(String gameId,Token token) {
+    public Game joinGame(String gameId, Token token) {
         Game gameInAction = gameRepository.getOne(gameId);
         gameInAction.setJoiner(token);
         gameInAction.setState(Game.State.ACTIVE);
@@ -42,15 +41,13 @@ public class GameService {
     }
 
 
-
     public Game makeMove(Selection move, String tokenId) {
 
         Token token = tokenRepository.getOne(tokenId);
         Game ownerGame = token.getOwnerGame();
 
-        if (ownerGame != null && ownerGame.getMove()==null) {
+        if (ownerGame != null && ownerGame.getMove() == null) {
             ownerGame.setMove(move);
-            checkWinnerOfGame(ownerGame);
             tokenRepository.save(token);
             gameRepository.save(ownerGame);
             return ownerGame;
@@ -59,10 +56,13 @@ public class GameService {
         Game joinerGame = token.getJoinerGame();
         if (joinerGame.getJoiner().getId() != null) {
             ownerGame.setOpponentMove(move);
-            checkWinnerOfGame(joinerGame);
             tokenRepository.save(token);
             gameRepository.save(joinerGame);
             gameRepository.save(ownerGame);
+
+            if (ownerGame.getMove() != null) {
+                checkWinnerOfGame(joinerGame);
+            }
             return joinerGame;
         }
 
@@ -72,6 +72,24 @@ public class GameService {
     }
 
     private void checkWinnerOfGame(Game game) {
+        int ownerMove = game.getOpponentMove().getValue();
+        int joinerMove = game.getOpponentMove().getValue();
+
+
+
+
+        System.out.println("owner move:"+ ownerMove);
+        System.out.println("joiner move:"+ joinerMove);
+
+        if (joinerMove == ownerMove) {
+
+        }
+//        if (joinerMove == 1 && ownerMove == 2) {
+//
+//        }
+//        if (joinerMove == 1 && ownerMove == 2) {
+//
+//        }
 
     }
 
@@ -88,6 +106,7 @@ public class GameService {
         Game gameInAction = gameRepository.getOne(gameId);
 
         gameInAction.getState();
+
 
         gameRepository.save(gameInAction);
 

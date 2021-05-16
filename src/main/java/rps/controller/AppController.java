@@ -1,7 +1,6 @@
 package rps.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -9,7 +8,6 @@ import rps.model.game.Game;
 import rps.model.gamelogic.Selection;
 import rps.model.utils.AppUtils;
 import rps.model.utils.GameDTO;
-import rps.repositories.TokenRepository;
 import rps.services.GameService;
 
 import rps.tokens.Token;
@@ -56,7 +54,8 @@ public class AppController {
                 game.getMove(),
                 game.getState(),
                 game.getJoiner() != null ? game.getJoiner().getName() : "",
-                game.getOpponentMove());
+                game.getOpponentMove(),
+                game.getWinner());
     }
 
 
