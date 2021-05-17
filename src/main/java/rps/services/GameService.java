@@ -80,30 +80,31 @@ public class GameService {
 
 
         if (ownerMove.equals(Selection.ROCK) && joinerMove.equals(Selection.PAPER)) {
-            game.setWinner(setJoinerToWinner);
+            game.setState(Game.State.LOSE);
         }
         if (ownerMove.equals(Selection.PAPER) && joinerMove.equals(Selection.SCISSORS)) {
-            game.setWinner(setJoinerToWinner);
+            game.setState(Game.State.LOSE);
         }
 
         if (ownerMove.equals(Selection.SCISSORS) && joinerMove.equals(Selection.ROCK)) {
-            game.setWinner(setJoinerToWinner);
+            game.setState(Game.State.LOSE);
+
         }
 
         if (ownerMove.equals(Selection.ROCK) && joinerMove.equals(Selection.SCISSORS)) {
-            game.setWinner(setOwnerToWinner);
+            game.setState(Game.State.WIN);
         }
         if (ownerMove.equals(Selection.PAPER) && joinerMove.equals(Selection.ROCK)) {
-            game.setWinner(setOwnerToWinner);
+            game.setState(Game.State.WIN);
         }
 
         if (ownerMove.equals(Selection.SCISSORS) && joinerMove.equals(Selection.PAPER)) {
-            game.setWinner(setOwnerToWinner);
+            game.setState(Game.State.WIN);
         }
 
 
         if (joinerMove.equals(ownerMove)) {
-            game.setWinner("Draw");
+            game.setState(Game.State.DRAW);
         }
 
     }

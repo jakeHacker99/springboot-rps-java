@@ -22,7 +22,6 @@ public class Game {
     private String id;
     private Selection move;
     private  Selection opponentMove;
-    private String winner;
     private State state;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn
@@ -184,7 +183,7 @@ public class Game {
     }*/
 
     public enum State {
-         NONE(3), OPEN(2), ACTIVE(1), OVER(0);
+          OPEN(0), ACTIVE(1), WIN(2), LOSE(3), DRAW(4);
         private int value;
 
         State(int value) {

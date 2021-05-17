@@ -54,8 +54,7 @@ public class AppController {
                 game.getMove(),
                 game.getState(),
                 game.getJoiner() != null ? game.getJoiner().getName() : "",
-                game.getOpponentMove(),
-                game.getWinner());
+                game.getOpponentMove());
     }
 
 
