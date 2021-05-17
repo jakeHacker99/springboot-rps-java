@@ -72,24 +72,19 @@ public class GameService {
     }
 
     private void checkWinnerOfGame(Game game) {
-        int ownerMove = game.getOpponentMove().getValue();
-        int joinerMove = game.getOpponentMove().getValue();
+        String joinerMove = String.valueOf(game.getOpponentMove().getValue());
+        String ownerMove = String.valueOf(game.getMove().getValue());
+
+        String setOwnerToWinner = game.getOwner().getId();
+        String setJoinerToWinner = game.getJoiner().getId();
 
 
-
-
-        System.out.println("owner move:"+ ownerMove);
-        System.out.println("joiner move:"+ joinerMove);
-
-        if (joinerMove == ownerMove) {
-
+        if(ownerMove.equals(0) && joinerMove.equals(1) ){
+            game.setWinner(setOwnerToWinner);
         }
-//        if (joinerMove == 1 && ownerMove == 2) {
-//
-//        }
-//        if (joinerMove == 1 && ownerMove == 2) {
-//
-//        }
+        if (joinerMove.equals(ownerMove)) {
+            game.setWinner("Draw");
+        }
 
     }
 

@@ -1,3 +1,163 @@
+GET http://localhost:8080/games/move/PAPER
+token: c4b97212-c372-4e4e-a549-4ada8e85be03
+
+<> 2021-05-17T125654.200.json
+
+###
+
+GET http://localhost:8080/games/move/ROCK
+token: 188db400-fd23-4451-b78c-072b614f1bf2
+
+<> 2021-05-17T125646.200.json
+
+###
+
+GET http://localhost:8080/games/join/48afc2ef-df02-4841-a89b-81c144a281d6
+token: c4b97212-c372-4e4e-a549-4ada8e85be03
+
+<> 2021-05-17T125635.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T125630.200.txt
+
+###
+
+GET http://localhost:8080/games/start
+token: 188db400-fd23-4451-b78c-072b614f1bf2
+
+<> 2021-05-17T125621.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T125616.200.txt
+
+###
+
+GET http://localhost:8080/games/move/PAPER
+token: d843b60e-3655-4733-a0d6-5994167ac154
+
+<> 2021-05-17T125226.200.json
+
+###
+
+GET http://localhost:8080/games/move/ROCK
+token: ae50bdab-e5b3-42bd-a4cc-26490eb802fb
+
+<> 2021-05-17T125213.200.json
+
+###
+
+GET http://localhost:8080/games/join/3eff5f89-d666-4801-a34f-fce725a29bd0
+token: d843b60e-3655-4733-a0d6-5994167ac154
+
+<> 2021-05-17T125203.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T125158.200.txt
+
+###
+
+GET http://localhost:8080/games/start
+token: ae50bdab-e5b3-42bd-a4cc-26490eb802fb
+
+<> 2021-05-17T125148.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T125141.200.txt
+
+###
+
+GET http://localhost:8080/games/move/PAPER
+token: f83d1862-db92-4baf-9384-07b165e63212
+
+<> 2021-05-17T125001.200.json
+
+###
+
+GET http://localhost:8080/games/move/ROCK
+token: e5919eab-5484-4ab0-956a-28789617b7ce
+
+<> 2021-05-17T124952.200.json
+
+###
+
+GET http://localhost:8080/games/join/39fe7f56-ff81-487a-a3cb-81eb4f3be52c
+token: f83d1862-db92-4baf-9384-07b165e63212
+
+<> 2021-05-17T124941.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T124936.200.txt
+
+###
+
+GET http://localhost:8080/games/start
+token: e5919eab-5484-4ab0-956a-28789617b7ce
+
+<> 2021-05-17T124925.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T124917.200.txt
+
+###
+
+GET http://localhost:8080/games/move/PAPER
+token: f2af7fd1-d41e-48f2-8aa2-8f8d9207e81b
+
+<> 2021-05-17T124452.200.json
+
+###
+
+GET http://localhost:8080/games/move/ROCK
+token: d60bfbfa-c8f4-4df9-a8eb-cbd041004d56
+
+<> 2021-05-17T124434.200.json
+
+###
+
+GET http://localhost:8080/games/join/0b89491f-b92e-41c4-93f4-c1c732662a32
+token: f2af7fd1-d41e-48f2-8aa2-8f8d9207e81b
+
+<> 2021-05-17T124421.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T124414.200.txt
+
+###
+
+GET http://localhost:8080/games/start
+token: d60bfbfa-c8f4-4df9-a8eb-cbd041004d56
+
+<> 2021-05-17T124404.200.json
+
+###
+
+GET http://localhost:8080/tokens/new
+
+<> 2021-05-17T124353.200.txt
+
+###
+
 GET http://localhost:8080/games/start
 token: c7f727f3-04ef-4bb2-a49e-1a5da2a8a4d9
 
@@ -166,165 +326,6 @@ token: 4ea25c97-f688-4f64-ad7b-8e4601b48a02
 GET http://localhost:8080/tokens/new
 
 <> 2021-05-16T230625.200.txt
-
-###
-
-GET http://localhost:8080/games/move/ROCK
-token: 6801c558-ae38-4dba-b860-ccda3c6ade92
-
-<> 2021-05-16T230604.500.json
-
-###
-
-GET http://localhost:8080/games/join/8b485b38-91cb-4a08-b57c-e39e948899a8
-token: ca614fb5-6763-44a3-b9d2-543c4c701d99
-
-<> 2021-05-16T230549.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-16T230542.200.txt
-
-###
-
-GET http://localhost:8080/games/start
-token: 6801c558-ae38-4dba-b860-ccda3c6ade92
-
-<> 2021-05-16T230530.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-16T230525.200.txt
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-16T230507.200.txt
-
-###
-
-GET http://localhost:8080/games/start
-token: 95bbe8ce-3d3c-4a43-8d97-a5b7f2011ea6
-
-<> 2021-05-16T230503.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-16T230457.200.txt
-
-###
-
-GET http://localhost:8080/games/move/SCISSORS
-token: e51e136e-b55f-4a1e-84b0-4bee647aed95
-
-<> 2021-05-16T230440.500.json
-
-###
-
-GET http://localhost:8080/games/join/f2857abe-dd13-46e9-819c-611708ee7cee
-token: ae786717-6d37-474d-b2e2-6c707b7d3652
-
-<> 2021-05-16T230429.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-16T230416.200.txt
-
-###
-
-GET http://localhost:8080/games/start
-token: e51e136e-b55f-4a1e-84b0-4bee647aed95
-
-<> 2021-05-16T230406.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-16T230359.200.txt
-
-###
-
-GET http://localhost:8080/games/move/SCISSORS
-token: 4065d177-5ba7-4be2-8cee-de02fa3521fc
-
-<> 2021-05-12T175637.200.json
-
-###
-
-GET http://localhost:8080/games/move/ROCK
-token: 17121d3d-e14f-47b4-bd6d-1e56cb1e2ee4
-
-<> 2021-05-12T175619.200.json
-
-###
-
-GET http://localhost:8080/games/join/4fd7d1ad-1b18-4a06-8f18-1c7858481204
-token: 4065d177-5ba7-4be2-8cee-de02fa3521fc
-
-<> 2021-05-12T175608.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-12T175602.200.txt
-
-###
-
-GET http://localhost:8080/games/start
-token: 17121d3d-e14f-47b4-bd6d-1e56cb1e2ee4
-
-<> 2021-05-12T175552.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-12T175547.200.txt
-
-###
-
-GET http://localhost:8080/games/move/ROCK
-token: eff75c00-a5b6-47da-88ae-ca979085b0c5
-
-<> 2021-05-12T175217.200.json
-
-###
-
-GET http://localhost:8080/games/move/SCISSORS
-token: f81d0a15-52a8-48b1-8131-701f2bba584a
-
-<> 2021-05-12T175102.200.json
-
-###
-
-GET http://localhost:8080/games/move/ROCK
-token: eff75c00-a5b6-47da-88ae-ca979085b0c5
-
-<> 2021-05-12T175051.200.json
-
-###
-
-GET http://localhost:8080/games/join/77744532-21a7-4c95-b78e-f800276d084a
-token: f81d0a15-52a8-48b1-8131-701f2bba584a
-
-<> 2021-05-12T175038.200.json
-
-###
-
-GET http://localhost:8080/tokens/new
-
-<> 2021-05-12T175033.200.txt
 
 ###
 
