@@ -11,6 +11,9 @@ import rps.repositories.GameRepository;
 import rps.repositories.TokenRepository;
 import rps.tokens.Token;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 @AllArgsConstructor
@@ -75,6 +78,7 @@ public class GameService {
         Selection ownerMove = game.getMove();
         Selection joinerMove = game.getOpponentMove();
 
+
         String setOwnerToWinner = game.getOwner().getId();
         String setJoinerToWinner = game.getJoiner().getId();
 
@@ -107,6 +111,9 @@ public class GameService {
             game.setState(Game.State.DRAW);
         }
 
+
+
+
     }
 
 
@@ -120,12 +127,22 @@ public class GameService {
 
     public Game getState(String gameId) {
         Game gameInAction = gameRepository.getOne(gameId);
-
         gameInAction.getState();
-
-
         gameRepository.save(gameInAction);
-
         return gameInAction;
     }
+
+    public Game getGameInfo(String tokenId) {
+        Game gameInfo = gameRepository.getOne(tokenId);
+        return gameInfo;
+    }
+
+    public List<Game> getAllgames(String gameId) {
+        List gameInAction = gameRepository.findAll();
+        System.out.println(gameInAction);
+        return  gameInAction;
+
+    }
+
+
 }

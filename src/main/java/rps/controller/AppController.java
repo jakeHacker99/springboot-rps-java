@@ -13,6 +13,8 @@ import rps.services.GameService;
 import rps.tokens.Token;
 import rps.tokens.TokenService;
 
+import java.util.ArrayList;
+
 
 @RestController
 @AllArgsConstructor
@@ -72,16 +74,35 @@ public class AppController {
         return  toGameDTO(gameService.makeMove(move,tokenId));
     }
 
-   /* @PostMapping(value = "/user/name")
+    @GetMapping(value = "/games/status")
+    public GameDTO getState(@RequestHeader("token") String tokenId) {
+        return toGameDTO(gameService.getState(tokenId));
+    }
+
+
+    @GetMapping(value = "/games/{id}")
+    public GameDTO getState(@PathVariable("gameId") String gameId,
+                            @RequestHeader("token") String tokenId) {
+        return toGameDTO(gameService.getGameInfo(tokenId));
+    }
+
+
+    @GetMapping(value = "/games")
+    public ArrayList getAllGames(@RequestHeader("token") String gameId) {
+        return new ArrayList(Integer.parseInt(gameService.getAllgames(gameId)));
+    }
+
+
+
+
+
+
+      /* @PostMapping(value = "/user/name")
     public GameDTO setName(@RequestBody String name,
                           @RequestHeader("token") String tokenId)  {
         return toGameDTO(gameService.getName(name,tokenId)) ;
     }
 */
-    @GetMapping(value = "/games/status")
-    public GameDTO getState(@RequestHeader("token") String tokenId) {
-        return toGameDTO(gameService.getState(tokenId));
-    }
 
 
    /*
