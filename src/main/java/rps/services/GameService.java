@@ -79,9 +79,29 @@ public class GameService {
         String setJoinerToWinner = game.getJoiner().getId();
 
 
-        if(ownerMove.equals(Selection.ROCK) && joinerMove.equals(Selection.PAPER) ){
+        if (ownerMove.equals(Selection.ROCK) && joinerMove.equals(Selection.PAPER)) {
+            game.setWinner(setJoinerToWinner);
+        }
+        if (ownerMove.equals(Selection.PAPER) && joinerMove.equals(Selection.SCISSORS)) {
+            game.setWinner(setJoinerToWinner);
+        }
+
+        if (ownerMove.equals(Selection.SCISSORS) && joinerMove.equals(Selection.ROCK)) {
+            game.setWinner(setJoinerToWinner);
+        }
+
+        if (ownerMove.equals(Selection.ROCK) && joinerMove.equals(Selection.SCISSORS)) {
             game.setWinner(setOwnerToWinner);
         }
+        if (ownerMove.equals(Selection.PAPER) && joinerMove.equals(Selection.ROCK)) {
+            game.setWinner(setOwnerToWinner);
+        }
+
+        if (ownerMove.equals(Selection.SCISSORS) && joinerMove.equals(Selection.PAPER)) {
+            game.setWinner(setOwnerToWinner);
+        }
+
+
         if (joinerMove.equals(ownerMove)) {
             game.setWinner("Draw");
         }
