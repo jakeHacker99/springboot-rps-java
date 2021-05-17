@@ -34,7 +34,7 @@ public enum Selection{
             case 2:
                 return "SCISSORS";
             default:
-                return "Draw";
+                return "NONE";
         }
     }
 }

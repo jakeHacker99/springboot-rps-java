@@ -4,15 +4,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import rps.model.gamelogic.Selection;
-import rps.model.utils.Body;
 import rps.model.game.Game;
 import rps.model.utils.AppUtils;
 import rps.repositories.GameRepository;
 import rps.repositories.TokenRepository;
 import rps.tokens.Token;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -92,7 +92,6 @@ public class GameService {
 
         if (ownerMove.equals(Selection.SCISSORS) && joinerMove.equals(Selection.ROCK)) {
             game.setState(Game.State.LOSE);
-
         }
 
         if (ownerMove.equals(Selection.ROCK) && joinerMove.equals(Selection.SCISSORS)) {
@@ -106,17 +105,12 @@ public class GameService {
             game.setState(Game.State.WIN);
         }
 
-
         if (joinerMove.equals(ownerMove)) {
             game.setState(Game.State.DRAW);
         }
 
 
-
-
     }
-
-
 
   /*  public Game getName(String name, String tokenId) {
         Game enterName = gameRepository.getOne(tokenId);
@@ -133,15 +127,16 @@ public class GameService {
     }
 
     public Game getGameInfo(String tokenId) {
-        Game gameInfo = gameRepository.getOne(tokenId);
-        return gameInfo;
+        return gameRepository.getOne(tokenId);
     }
 
-    public List<Game> getAllgames(String gameId) {
-        List gameInAction = gameRepository.findAll();
-        System.out.println(gameInAction);
-        return  gameInAction;
-
+    public Stream<Game> getAllGames(String tokenId) {
+        return gameRepository
+                .findAll()
+                .stream()
+                .filter(game -> game.getState().equals(Game.State.OPEN)
+                        && !game.getOwner()
+                        .equals(tokenRepository.getOne(tokenId)));
     }
 
 

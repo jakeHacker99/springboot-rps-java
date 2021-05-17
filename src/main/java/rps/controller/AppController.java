@@ -14,6 +14,8 @@ import rps.tokens.Token;
 import rps.tokens.TokenService;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -88,8 +90,8 @@ public class AppController {
 
 
     @GetMapping(value = "/games")
-    public ArrayList getAllGames(@RequestHeader("token") String gameId) {
-        return new ArrayList(Integer.parseInt(gameService.getAllgames(gameId)));
+    public List<GameDTO> getAllGames(@RequestHeader(value="token",required= true) String tokenId ) {
+        return  gameService.getAllGames(tokenId).map(game -> toGameDTO(game)).collect(Collectors.toList());
     }
 
 
