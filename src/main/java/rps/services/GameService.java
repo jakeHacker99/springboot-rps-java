@@ -72,14 +72,14 @@ public class GameService {
     }
 
     private void checkWinnerOfGame(Game game) {
-        String joinerMove = String.valueOf(game.getOpponentMove().getValue());
-        String ownerMove = String.valueOf(game.getMove().getValue());
+        Selection ownerMove = game.getMove();
+        Selection joinerMove = game.getOpponentMove();
 
         String setOwnerToWinner = game.getOwner().getId();
         String setJoinerToWinner = game.getJoiner().getId();
 
 
-        if(ownerMove.equals(0) && joinerMove.equals(1) ){
+        if(ownerMove.equals(Selection.ROCK) && joinerMove.equals(Selection.PAPER) ){
             game.setWinner(setOwnerToWinner);
         }
         if (joinerMove.equals(ownerMove)) {

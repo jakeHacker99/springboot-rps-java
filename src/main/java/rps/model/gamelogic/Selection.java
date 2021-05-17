@@ -1,6 +1,5 @@
 package rps.model.gamelogic;
 
-import lombok.Data;
 
 
 public enum Selection{
