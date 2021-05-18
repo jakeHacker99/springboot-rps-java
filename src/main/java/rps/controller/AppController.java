@@ -81,12 +81,12 @@ public class AppController {
         return toGameDTO(gameService.getState(tokenId));
     }
 
-
-    @GetMapping(value = "/games/{id}")
-    public GameDTO getState(@PathVariable("gameId") String gameId,
-                            @RequestHeader("token") String tokenId) {
-        return toGameDTO(gameService.getGameInfo(tokenId));
-    }
+//
+//    @GetMapping(value = "/games/{id}")
+//    public GameDTO getState(@PathVariable("gameId") String gameId,
+//                            @RequestHeader("token") String tokenId) {
+//        return toGameDTO(gameService.getGameInfo(tokenId));
+//    }
 
 
     @GetMapping(value = "/games")
