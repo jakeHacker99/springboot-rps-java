@@ -14,7 +14,6 @@ import rps.tokens.Token;
 import javax.persistence.*;
 @Data
 @Entity
-@Table(name = "ourGame")
 @NoArgsConstructor
 public class Game {
 
