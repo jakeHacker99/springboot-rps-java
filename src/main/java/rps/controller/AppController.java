@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin
 public class AppController {
 
     private final GameService gameService;
